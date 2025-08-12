@@ -1,43 +1,93 @@
-# Astro Starter Kit: Minimal
+# BLDR Business Website
 
-```sh
-npm create astro@latest -- --template minimal
+A modern business website built with Astro.
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Node.js (v18 or higher) ✅
+- npm (v8 or higher) ✅
+- Git ✅
+
+### Development
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 📋 Setup Checklist
 
-## 🚀 Project Structure
+### 1. Git Configuration (Required)
+Set up your Git identity:
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+```
 
-Inside of your Astro project, you'll see the following folders and files:
+### 2. GitHub Setup (Required)
+1. Install GitHub CLI:
+   ```bash
+   # macOS
+   brew install gh
+   
+   # Or download from: https://cli.github.com/
+   ```
 
-```text
-/
-├── public/
+2. Authenticate with GitHub:
+   ```bash
+   gh auth login
+   ```
+
+3. Create a new repository on GitHub:
+   ```bash
+   gh repo create bldr-website --public --source=. --remote=origin --push
+   ```
+
+### 3. Vercel Deployment (Future)
+1. Create a Vercel account at https://vercel.com
+2. Install Vercel CLI:
+   ```bash
+   npm i -g vercel
+   ```
+3. Deploy:
+   ```bash
+   vercel
+   ```
+
+## 🛠️ Project Structure
+```
+BLDRpage/
+├── public/          # Static assets
 ├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── components/  # Reusable components
+│   ├── layouts/     # Page layouts
+│   └── pages/       # Route pages
+├── astro.config.mjs # Astro configuration
+└── package.json     # Dependencies
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## 🎨 Customization
+- Update `src/pages/index.astro` for your homepage
+- Add new pages in `src/pages/`
+- Create components in `src/components/`
+- Modify `astro.config.mjs` for build settings
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## 📦 Available Scripts
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run astro` - Run Astro CLI commands
 
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## 🔗 Useful Links
+- [Astro Documentation](https://docs.astro.build/)
+- [Vercel Documentation](https://vercel.com/docs)
+- [GitHub CLI Documentation](https://cli.github.com/)
