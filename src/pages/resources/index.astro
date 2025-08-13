@@ -1,0 +1,842 @@
+---
+const title = "Resources — BLDRpage";
+const description = "Learn how to create better landing pages with our guides, checklists, and insights. Resources for marketers, sales teams, and agencies.";
+const url = "https://bldrpage.com/resources";
+---
+
+<html lang="en" class="scroll-smooth antialiased">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={url} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --forest: #066050;
+        --olive: #8F7C25;
+        --blue: #1C86BC;
+        --orange: #DF7616;
+        --white: #FFFFFF;
+        --light-bg: #f8fafc;
+        --text-primary: #0f172a;
+        --text-secondary: #475569;
+        --text-muted: #64748b;
+        --border: #e2e8f0;
+        --radius: 12px;
+        --maxw: 1120px;
+      }
+      
+      * { box-sizing: border-box; }
+      
+      body { 
+        font-family: 'Inter', sans-serif; 
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, var(--light-bg) 0%, var(--white) 100%);
+        color: var(--text-primary);
+      }
+      
+      a { color: inherit; text-decoration: none; }
+      
+      .fade-in { 
+        opacity: 0; 
+        transform: translateY(20px); 
+        animation: fadeInUp 0.6s ease-out forwards; 
+      }
+      .fade-in-delay-1 { animation-delay: 0.1s; }
+      .fade-in-delay-2 { animation-delay: 0.2s; }
+      .fade-in-delay-3 { animation-delay: 0.3s; }
+      
+      @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+      
+      .container { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+      
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 24px;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 14px;
+        border: 2px solid transparent;
+        transition: all 0.2s;
+        cursor: pointer;
+      }
+      
+      .btn-primary {
+        background: linear-gradient(135deg, var(--forest) 0%, var(--blue) 100%);
+        color: var(--white);
+        box-shadow: 0 4px 12px rgba(6, 96, 80, 0.3);
+      }
+      .btn-primary:hover {
+        box-shadow: 0 8px 24px rgba(6, 96, 80, 0.4);
+        transform: translateY(-2px);
+      }
+      
+      .btn-ghost {
+        background: var(--white);
+        border-color: var(--border);
+        color: var(--text-secondary);
+      }
+      .btn-ghost:hover {
+        background: var(--light-bg);
+        border-color: var(--forest);
+      }
+      
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 600;
+        font-size: 20px;
+        color: var(--text-primary);
+        transition: transform 0.2s ease;
+      }
+      
+      .logo:hover {
+        transform: scale(1.05);
+      }
+      
+      .logo img {
+        height: 32px;
+        width: auto;
+        max-width: 160px;
+      }
+      
+      header {
+        position: sticky;
+        top: 0;
+        backdrop-filter: saturate(120%) blur(8px);
+        background: rgba(255, 255, 255, 0.8);
+        border-bottom: 1px solid var(--border);
+        z-index: 50;
+      }
+      
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 0;
+      }
+      
+      .nav a {
+        color: var(--text-secondary);
+        transition: color 0.2s;
+      }
+      .nav a:hover {
+        color: var(--forest);
+      }
+      
+      /* Override nav link color for primary buttons */
+      .nav .btn-primary {
+        color: var(--white) !important;
+      }
+      .nav .btn-primary:hover {
+        color: var(--white) !important;
+      }
+      
+      .nav-links {
+        display: flex;
+        gap: 32px;
+        align-items: center;
+      }
+      
+      .nav-item {
+        position: relative;
+      }
+      
+      .nav-item > a {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        color: var(--text-secondary);
+        transition: color 0.2s;
+      }
+      
+      .nav-item:hover > a {
+        color: var(--forest);
+      }
+      
+      .dropdown {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        padding: 16px 0;
+        min-width: 200px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8px);
+        transition: all 0.2s ease;
+        z-index: 100;
+      }
+      
+      .nav-item:hover .dropdown {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+      
+      .dropdown a {
+        display: block;
+        padding: 12px 20px;
+        color: var(--text-secondary);
+        transition: all 0.2s;
+        border-left: 3px solid transparent;
+      }
+      
+      .dropdown a:hover {
+        color: var(--forest);
+        background: var(--light-bg);
+        border-left-color: var(--forest);
+      }
+      
+      .dropdown-arrow {
+        font-size: 12px;
+        transition: transform 0.2s;
+      }
+      
+      .nav-item:hover .dropdown-arrow {
+        transform: rotate(180deg);
+      }
+
+      .nav-item.clicked .dropdown,
+      .nav-item.active.clicked .dropdown {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        transform: translateY(-8px) !important;
+        pointer-events: none !important;
+      }
+      
+      .hero {
+        padding: 120px 0 80px;
+        text-align: center;
+      }
+      
+      .hero h1 {
+        font-size: clamp(40px, 5vw, 64px);
+        line-height: 1.1;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin: 0 0 24px;
+      }
+      
+      .hero p {
+        font-size: 20px;
+        color: var(--text-secondary);
+        margin: 0 auto 32px;
+        line-height: 1.6;
+        max-width: 600px;
+      }
+      
+      .gradient-text {
+        background: linear-gradient(135deg, var(--forest) 0%, var(--blue) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      
+      .section {
+        padding: 80px 0;
+      }
+      
+      .panel {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        padding: 48px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+        margin-bottom: 48px;
+      }
+      
+      h2 {
+        font-size: clamp(28px, 4vw, 48px);
+        margin: 0 0 16px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        text-align: center;
+      }
+      
+      p.lead {
+        color: var(--text-secondary);
+        font-size: 18px;
+        margin: 0 auto 48px;
+        line-height: 1.6;
+        text-align: center;
+        max-width: 600px;
+      }
+      
+      .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 32px;
+      }
+      
+      .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 24px;
+      }
+      
+      .card {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 32px;
+        transition: all 0.2s;
+        text-decoration: none;
+        color: inherit;
+        display: block;
+      }
+      
+      .card:hover {
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        transform: translateY(-4px);
+      }
+      
+      .card h3 {
+        margin: 0 0 16px;
+        font-size: 20px;
+        font-weight: 600;
+      }
+      
+      .card p {
+        margin: 0;
+        color: var(--text-secondary);
+        line-height: 1.6;
+      }
+      
+      .resource-icon {
+        width: 64px;
+        height: 64px;
+        background: linear-gradient(135deg, var(--forest) 0%, var(--blue) 100%);
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 24px;
+        font-size: 28px;
+        color: white;
+      }
+      
+      .featured-article {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 40px;
+        margin-bottom: 48px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      }
+      
+      .featured-article h3 {
+        font-size: 32px;
+        margin-bottom: 16px;
+        font-weight: 700;
+      }
+      
+      .featured-article p {
+        color: var(--text-secondary);
+        margin-bottom: 24px;
+        font-size: 18px;
+        line-height: 1.6;
+      }
+      
+      .article-meta {
+        color: var(--forest);
+        font-size: 14px;
+        margin-bottom: 16px;
+        font-weight: 600;
+      }
+      
+      .topic-card {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 32px;
+        transition: all 0.2s;
+      }
+      
+      .topic-card:hover {
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        transform: translateY(-2px);
+      }
+      
+      .topic-card h3 {
+        margin-bottom: 12px;
+        font-size: 20px;
+        font-weight: 600;
+      }
+      
+      .topic-card p {
+        color: var(--text-secondary);
+        margin-bottom: 16px;
+        line-height: 1.6;
+      }
+      
+      .topic-link {
+        color: var(--forest);
+        font-weight: 600;
+        text-decoration: underline;
+        text-underline-offset: 4px;
+      }
+      
+      .topic-link:hover {
+        color: var(--blue);
+      }
+      
+      .newsletter-card {
+        background: linear-gradient(135deg, var(--forest) 0%, var(--blue) 100%);
+        color: var(--white);
+        text-align: center;
+        border: none;
+        margin: 0 auto;
+        max-width: 600px;
+      }
+      
+      .newsletter-card h3 {
+        color: var(--white);
+        margin-bottom: 16px;
+      }
+      
+      .newsletter-card p {
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 16px;
+      }
+      
+      .cta-section { 
+        text-align: center; 
+        padding: 80px 0;
+      }
+      .cta-section .btn { 
+        margin: 0 8px; 
+      }
+      
+      footer {
+        padding: 64px 0;
+        background: var(--light-bg);
+        color: var(--text-muted);
+        border-top: 1px solid var(--border);
+      }
+      
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 32px;
+      }
+      
+      .footer-col a {
+        display: block;
+        color: var(--text-muted);
+        padding: 8px 0;
+        transition: color 0.2s;
+      }
+      
+      .footer-col a:hover {
+        color: var(--forest);
+      }
+      
+      .mobile-menu-toggle {
+        display: none;
+        flex-direction: column;
+        gap: 4px;
+        cursor: pointer;
+        padding: 8px;
+      }
+      
+      .mobile-menu-toggle span {
+        width: 24px;
+        height: 3px;
+        background: var(--text-primary);
+        border-radius: 2px;
+        transition: all 0.3s;
+      }
+      
+      .mobile-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        border-bottom: 1px solid var(--border);
+        padding: 24px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+      
+      .mobile-menu.active {
+        display: block;
+      }
+      
+      .mobile-menu a {
+        display: block;
+        padding: 12px 0;
+        color: var(--text-secondary);
+        border-bottom: 1px solid var(--border);
+        transition: color 0.2s;
+      }
+      
+      .mobile-menu a:last-child {
+        border-bottom: none;
+      }
+      
+      .mobile-menu a:hover {
+        color: var(--forest);
+      }
+      
+      .mobile-menu .btn {
+        margin-top: 16px;
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .mobile-dropdown {
+        position: relative;
+      }
+      
+      .mobile-dropdown-toggle {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+      }
+      
+      .mobile-dropdown-content {
+        display: none;
+        background: var(--light-bg);
+        border-radius: 8px;
+        margin: 8px 0;
+        padding: 8px 0;
+      }
+      
+      .mobile-dropdown-content.active {
+        display: block;
+      }
+      
+      .mobile-dropdown-content a {
+        padding: 8px 16px;
+        margin: 4px 0;
+        font-size: 14px;
+        color: var(--text-muted);
+        border: none;
+      }
+      
+      .mobile-dropdown-content a:hover {
+        background: var(--white);
+        color: var(--forest);
+      }
+      
+      @media (max-width: 768px) {
+        .container { padding: 0 20px; max-width: 100%; }
+        .grid-2, .grid-3 { grid-template-columns: 1fr; gap: 24px; }
+        .nav-links { display: none; }
+        .mobile-menu-toggle { display: flex; }
+        .nav { position: relative; padding: 12px 0; }
+        .hero { padding: 60px 0 40px; }
+        .hero h1 { font-size: clamp(32px, 9vw, 48px); line-height: 1.2; margin-bottom: 20px; }
+        .hero p { font-size: 18px; line-height: 1.5; margin-bottom: 32px; padding: 0 10px; }
+        .section { padding: 50px 0; }
+        .panel, .featured-article { padding: 40px 24px; border-radius: 16px; }
+        .card { padding: 32px 24px; }
+        .topic-card { padding: 32px 24px; }
+        h2 { font-size: clamp(28px, 7vw, 40px); text-align: center; margin-bottom: 20px; padding: 0 10px; }
+        p.lead { font-size: 18px; padding: 0 10px; margin-bottom: 40px; }
+        .logo img { height: 32px; }
+        .footer-grid { grid-template-columns: 1fr; gap: 32px; text-align: center; }
+        .footer-col { margin-bottom: 24px; }
+        .cta-section { padding: 60px 20px; }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="nav container fade-in">
+        <a href="/" class="logo">
+          <img src="/logo.png" alt="BLDRpage">
+        </a>
+        
+        <div class="nav-links">
+          <div class="nav-item">
+            <a href="/product">
+              Product
+              <span class="dropdown-arrow">▼</span>
+            </a>
+            <div class="dropdown">
+              <a href="/product">Overview</a>
+              <a href="/product/ai">AI Features</a>
+              <a href="/product/personalization">Personalization</a>
+              <a href="/product/publish-and-track">Publish & Track</a>
+            </div>
+          </div>
+          <a href="/solutions">Solutions</a>
+          <a href="/resources">Resources</a>
+          <a href="/pricing">Pricing</a>
+          <a href="/login">Sign In</a>
+          <a href="/start" class="btn btn-primary">Get Started</a>
+        </div>
+        
+        <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+      
+      <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-dropdown">
+          <a href="/product" class="mobile-dropdown-toggle" onclick="toggleMobileDropdown(event)">Product ▼</a>
+          <div class="mobile-dropdown-content">
+            <a href="/product">Overview</a>
+            <a href="/product/ai">AI Features</a>
+            <a href="/product/personalization">Personalization</a>
+            <a href="/product/publish-and-track">Publish & Track</a>
+          </div>
+        </div>
+        <a href="/solutions">Solutions</a>
+        <a href="/resources">Resources</a>
+        <a href="/pricing">Pricing</a>
+        <a href="/login">Sign In</a>
+        <a href="/start" class="btn btn-primary">Get Started</a>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section class="hero container">
+        <h1 class="fade-in">Resources to help you <span class="gradient-text">succeed</span></h1>
+        <p class="fade-in-delay-1">Learn how to create better landing pages with our guides, checklists, and insights for marketers, sales teams, and agencies.</p>
+      </section>
+
+      <!-- Featured article -->
+      <section class="section container">
+        <div class="featured-article fade-in-delay-2">
+          <div class="article-meta">Featured Article • 5 min read</div>
+          <h3>The Complete Guide to Landing Page Personalization</h3>
+          <p>Learn how to use dynamic content and tokens to create personalized landing pages that convert better. From basic implementation to advanced strategies that scale.</p>
+          <a href="/blog/landing-page-personalization-guide" class="btn btn-primary">Read the guide</a>
+        </div>
+      </section>
+
+      <!-- Resource categories -->
+      <section class="section container">
+        <h2 class="fade-in">Browse by category</h2>
+        <p class="lead fade-in-delay-1">Find the resources you need to create better landing pages faster.</p>
+        
+        <div class="grid-3 fade-in-delay-2">
+          <a href="/blog" class="card">
+            <div class="resource-icon">📝</div>
+            <h3>Blog</h3>
+            <p>Latest insights, tips, and strategies for creating high‑converting landing pages. Updated weekly with actionable content.</p>
+          </a>
+          
+          <a href="/guides" class="card">
+            <div class="resource-icon">📚</div>
+            <h3>Guides</h3>
+            <p>Comprehensive guides and tutorials for specific use cases, industries, and advanced landing page techniques.</p>
+          </a>
+          
+          <a href="/checklists" class="card">
+            <div class="resource-icon">✅</div>
+            <h3>Checklists</h3>
+            <p>Quick, actionable checklists to ensure your landing pages are optimized for maximum conversions and performance.</p>
+          </a>
+        </div>
+      </section>
+
+      <!-- Popular topics -->
+      <section class="section container">
+        <h2 class="fade-in">Popular topics</h2>
+        <p class="lead fade-in-delay-1">Explore our most‑read content and trending topics in landing page optimization.</p>
+        
+        <div class="grid-2 fade-in-delay-2">
+          <div class="topic-card">
+            <h3>PPC & Paid Advertising</h3>
+            <p>Landing page strategies for Google Ads, Facebook Ads, and other paid channels. Learn how to improve Quality Score and lower CPC.</p>
+            <a href="/blog/ppc-landing-pages" class="topic-link">View articles →</a>
+          </div>
+          
+          <div class="topic-card">
+            <h3>Sales & ABM</h3>
+            <p>Account‑based marketing and sales outreach landing page tactics. Create personalized experiences that book more meetings.</p>
+            <a href="/blog/sales-abm" class="topic-link">View articles →</a>
+          </div>
+          
+          <div class="topic-card">
+            <h3>Conversion Rate Optimization</h3>
+            <p>Proven techniques to improve your landing page conversion rates and performance. Data‑driven insights that work.</p>
+            <a href="/blog/cro" class="topic-link">View articles →</a>
+          </div>
+          
+          <div class="topic-card">
+            <h3>Industry‑Specific</h3>
+            <p>Landing page best practices for SaaS, e‑commerce, real estate, and more. Tailored strategies for your vertical.</p>
+            <a href="/blog/industries" class="topic-link">View articles →</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Newsletter signup -->
+      <section class="section container">
+        <div class="card newsletter-card fade-in-delay-3">
+          <h3>Stay updated with the latest insights</h3>
+          <p>Get actionable landing page tips and strategies delivered to your inbox every week. Join 10,000+ marketers who trust our insights.</p>
+          <p style="font-size: 14px; opacity: 0.8;">Coming soon: Weekly newsletter with exclusive content and case studies.</p>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="cta-section container fade-in-delay-3">
+        <h2>Ready to put these insights into practice?</h2>
+        <p class="lead">Start creating better landing pages with BLDRpage today.</p>
+        <div style="margin-top: 32px;">
+          <a class="btn btn-primary" href="/start">Start free</a>
+          <a class="btn btn-ghost" href="/product">Learn more</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-grid">
+        <div class="footer-col">
+          <div class="logo">
+            <img src="/logo.png" alt="BLDRpage">
+          </div>
+          <p style="margin: 16px 0 0; color: var(--text-muted);">AI‑powered landing pages at scale for modern marketing teams.</p>
+        </div>
+        <div class="footer-col">
+          <strong style="display: block; margin-bottom: 16px; font-weight: 600; color: var(--text-primary);">Product</strong>
+          <a href="/product">Overview</a>
+          <a href="/product/ai">AI Features</a>
+          <a href="/product/personalization">Personalization</a>
+          <a href="/product/publish-and-track">Analytics</a>
+        </div>
+        <div class="footer-col">
+          <strong style="display: block; margin-bottom: 16px; font-weight: 600; color: var(--text-primary);">Company</strong>
+          <a href="/about">About</a>
+          <a href="/contact">Contact</a>
+          <a href="/pricing">Pricing</a>
+          <a href="/careers">Careers</a>
+        </div>
+        <div class="footer-col">
+          <strong style="display: block; margin-bottom: 16px; font-weight: 600; color: var(--text-primary);">Resources</strong>
+          <a href="/blog">Blog</a>
+          <a href="/guides">Guides</a>
+          <a href="/templates">Templates</a>
+          <a href="/privacy">Privacy</a>
+          <a href="/terms">Terms</a>
+        </div>
+      </div>
+      <div class="container" style="text-align: center; margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--border);">
+        <p style="margin: 0; font-size: 14px; color: var(--text-muted);">
+          © 2025 BLDRpage. All rights reserved.
+        </p>
+      </div>
+    </footer>
+    
+    <script>
+      function toggleMobileMenu() {
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (mobileMenu) {
+          mobileMenu.classList.toggle('active');
+        }
+      }
+      
+      // Make function globally available
+      window.toggleMobileMenu = toggleMobileMenu;
+      
+      function toggleMobileDropdown(event) {
+        event.preventDefault();
+        const dropdownContent = event.target.nextElementSibling;
+        dropdownContent.classList.toggle('active');
+        
+        const arrow = event.target.innerHTML.includes('▼') ? '▲' : '▼';
+        event.target.innerHTML = event.target.innerHTML.replace(/[▼▲]/, arrow);
+      }
+      
+      document.addEventListener('click', function(event) {
+        const mobileMenu = document.getElementById('mobileMenu');
+        const toggle = document.querySelector('.mobile-menu-toggle');
+        
+        if (!toggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+          mobileMenu.classList.remove('active');
+        }
+      });
+      
+      // Close mobile menu and dropdowns when clicking any navigation link
+      document.addEventListener('DOMContentLoaded', function() {
+        const navLinks = document.querySelectorAll('.mobile-menu a:not(.mobile-dropdown-toggle)');
+        navLinks.forEach(link => {
+          link.addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.remove('active');
+            
+            // Close any open dropdowns
+            const dropdowns = document.querySelectorAll('.mobile-dropdown-content');
+            dropdowns.forEach(dropdown => {
+              dropdown.classList.remove('active');
+            });
+            
+            // Reset dropdown arrows
+            const toggles = document.querySelectorAll('.mobile-dropdown-toggle');
+            toggles.forEach(toggle => {
+              toggle.innerHTML = toggle.innerHTML.replace(/[▼▲]/, '▼');
+            });
+          });
+        });
+        
+        // Fix desktop dropdown closing when clicking dropdown links
+        const desktopDropdownLinks = document.querySelectorAll('.dropdown a');
+        desktopDropdownLinks.forEach(link => {
+          link.addEventListener('click', function() {
+            const navItem = this.closest('.nav-item');
+            if (navItem) {
+              // Remove active class and add clicked class to force dropdown closed
+              const wasActive = navItem.classList.contains('active');
+              navItem.classList.remove('active');
+              navItem.classList.add('clicked');
+              
+              // Clean up after navigation
+              setTimeout(() => {
+                navItem.classList.remove('clicked');
+                if (wasActive) {
+                  navItem.classList.add('active');
+                }
+              }, 200);
+            }
+          });
+        });
+      });
+      
+      document.addEventListener('DOMContentLoaded', () => {
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.style.animationPlayState = 'running';
+            }
+          });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in, .fade-in-delay-1, .fade-in-delay-2, .fade-in-delay-3').forEach(el => {
+          el.style.animationPlayState = 'paused';
+          observer.observe(el);
+        });
+      });
+    </script>
+  </body>
+</html>

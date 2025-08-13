@@ -1,0 +1,990 @@
+---
+const title = "Pricing — BLDRpage";
+const description = "Simple, transparent pricing for BLDRpage. Start free and upgrade when you're ready to scale.";
+const url = "https://bldrpage.com/pricing";
+---
+
+<html lang="en" class="scroll-smooth antialiased">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={url} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --forest: #066050;
+        --olive: #8F7C25;
+        --blue: #1C86BC;
+        --orange: #DF7616;
+        --white: #FFFFFF;
+        --light-bg: #f8fafc;
+        --text-primary: #0f172a;
+        --text-secondary: #475569;
+        --text-muted: #64748b;
+        --border: #e2e8f0;
+        --radius: 12px;
+        --maxw: 1120px;
+      }
+      
+      * { box-sizing: border-box; }
+      
+      body { 
+        font-family: 'Inter', sans-serif; 
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, var(--light-bg) 0%, var(--white) 100%);
+        color: var(--text-primary);
+      }
+      
+      a { color: inherit; text-decoration: none; }
+      
+      .fade-in { 
+        opacity: 0; 
+        transform: translateY(20px); 
+        animation: fadeInUp 0.6s ease-out forwards; 
+      }
+      .fade-in-delay-1 { animation-delay: 0.1s; }
+      .fade-in-delay-2 { animation-delay: 0.2s; }
+      .fade-in-delay-3 { animation-delay: 0.3s; }
+      
+      @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+      
+      .container { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+      
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 12px 24px;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 14px;
+        border: 2px solid transparent;
+        transition: all 0.2s;
+        cursor: pointer;
+        width: 100%;
+      }
+      
+      .btn-primary {
+        background: linear-gradient(135deg, var(--forest) 0%, var(--blue) 100%);
+        color: var(--white);
+        box-shadow: 0 4px 12px rgba(6, 96, 80, 0.3);
+      }
+      .btn-primary:hover {
+        box-shadow: 0 8px 24px rgba(6, 96, 80, 0.4);
+        transform: translateY(-2px);
+      }
+      
+      .btn-ghost {
+        background: var(--white);
+        border-color: var(--border);
+        color: var(--text-secondary);
+      }
+      .btn-ghost:hover {
+        background: var(--light-bg);
+        border-color: var(--forest);
+        color: var(--forest);
+      }
+      
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 600;
+        font-size: 20px;
+        color: var(--text-primary);
+        transition: transform 0.2s ease;
+      }
+      
+      .logo:hover {
+        transform: scale(1.05);
+      }
+      
+      .logo img {
+        height: 32px;
+        width: auto;
+        max-width: 160px;
+      }
+      
+      .logo-icon {
+        width: 32px;
+        height: 32px;
+        background: linear-gradient(135deg, var(--forest) 0%, var(--blue) 100%);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 800;
+        font-size: 16px;
+      }
+      
+      header {
+        position: sticky;
+        top: 0;
+        backdrop-filter: saturate(120%) blur(8px);
+        background: rgba(255, 255, 255, 0.8);
+        border-bottom: 1px solid var(--border);
+        z-index: 50;
+      }
+      
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 0;
+      }
+      
+      .nav a {
+        color: var(--text-secondary);
+        transition: color 0.2s;
+      }
+      .nav a:hover {
+        color: var(--forest);
+      }
+      
+      /* Override nav link color for primary buttons */
+      .nav .btn-primary {
+        color: var(--white) !important;
+      }
+      .nav .btn-primary:hover {
+        color: var(--white) !important;
+      }
+      
+      .nav-links {
+        display: flex;
+        gap: 32px;
+        align-items: center;
+      }
+      
+      .nav-item {
+        position: relative;
+      }
+      
+      .nav-item > a {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        color: var(--text-secondary);
+        transition: color 0.2s;
+      }
+      
+      .nav-item:hover > a {
+        color: var(--forest);
+      }
+      
+      .dropdown {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        padding: 16px 0;
+        min-width: 200px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8px);
+        transition: all 0.2s ease;
+        z-index: 100;
+      }
+      
+      .nav-item:hover .dropdown {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+      
+      .dropdown a {
+        display: block;
+        padding: 12px 20px;
+        color: var(--text-secondary);
+        transition: all 0.2s;
+        border-left: 3px solid transparent;
+      }
+      
+      .dropdown a:hover {
+        color: var(--forest);
+        background: var(--light-bg);
+        border-left-color: var(--forest);
+      }
+      
+      .dropdown-arrow {
+        font-size: 12px;
+        transition: transform 0.2s;
+      }
+      
+      .nav-item:hover .dropdown-arrow {
+        transform: rotate(180deg);
+      }
+
+      .nav-item.clicked .dropdown,
+      .nav-item.active.clicked .dropdown {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        transform: translateY(-8px) !important;
+        pointer-events: none !important;
+      }
+      
+      .mobile-menu-toggle {
+        display: none;
+        flex-direction: column;
+        gap: 4px;
+        cursor: pointer;
+        padding: 8px;
+      }
+      
+      .mobile-menu-toggle span {
+        width: 24px;
+        height: 3px;
+        background: var(--text-primary);
+        border-radius: 2px;
+        transition: all 0.3s;
+      }
+      
+      .mobile-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        border-bottom: 1px solid var(--border);
+        padding: 24px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+      
+      .mobile-menu.active {
+        display: block;
+      }
+      
+      .mobile-menu a {
+        display: block;
+        padding: 12px 0;
+        color: var(--text-secondary);
+        border-bottom: 1px solid var(--border);
+        transition: color 0.2s;
+      }
+      
+      .mobile-menu a:last-child {
+        border-bottom: none;
+      }
+      
+      .mobile-menu a:hover {
+        color: var(--forest);
+      }
+      
+      .mobile-menu .btn {
+        margin-top: 16px;
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .mobile-dropdown {
+        position: relative;
+      }
+      
+      .mobile-dropdown-toggle {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+      }
+      
+      .mobile-dropdown-content {
+        display: none;
+        background: var(--light-bg);
+        border-radius: 8px;
+        margin: 8px 0;
+        padding: 8px 0;
+      }
+      
+      .mobile-dropdown-content.active {
+        display: block;
+      }
+      
+      .mobile-dropdown-content a {
+        padding: 8px 16px;
+        margin: 4px 0;
+        font-size: 14px;
+        color: var(--text-muted);
+        border: none;
+      }
+      
+      .mobile-dropdown-content a:hover {
+        background: var(--white);
+        color: var(--forest);
+      }
+      
+      .hero {
+        padding: 120px 0 80px;
+        text-align: center;
+      }
+      
+      .hero h1 {
+        font-size: clamp(40px, 5vw, 64px);
+        line-height: 1.1;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin: 0 0 24px;
+      }
+      
+      .hero p {
+        font-size: 20px;
+        color: var(--text-secondary);
+        margin: 0 auto 32px;
+        line-height: 1.6;
+        max-width: 600px;
+      }
+      
+      .gradient-text {
+        background: linear-gradient(135deg, var(--forest) 0%, var(--blue) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      
+      .section {
+        padding: 80px 0;
+      }
+      
+      .pricing-grid { 
+        display: grid; 
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+        gap: 24px; 
+        margin-top: 48px; 
+      }
+      
+      .pricing-card {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 40px 32px;
+        text-align: center;
+        position: relative;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      }
+      
+      .pricing-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+      
+      .pricing-card.featured {
+        border-color: var(--forest);
+        transform: scale(1.05);
+        box-shadow: 0 20px 50px rgba(6, 96, 80, 0.15);
+      }
+      
+      .pricing-card.featured:hover {
+        transform: scale(1.05) translateY(-8px);
+      }
+      
+      .pricing-card.featured::before {
+        content: "Most Popular";
+        position: absolute;
+        top: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: linear-gradient(135deg, var(--forest) 0%, var(--blue) 100%);
+        color: white;
+        padding: 6px 20px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        box-shadow: 0 4px 12px rgba(6, 96, 80, 0.3);
+      }
+      
+      .plan-name {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 8px;
+        color: var(--text-primary);
+      }
+      
+      .plan-price {
+        font-size: 56px;
+        font-weight: 800;
+        margin-bottom: 8px;
+        line-height: 1;
+      }
+      
+      .plan-price .currency {
+        font-size: 28px;
+        vertical-align: top;
+        color: var(--forest);
+      }
+      
+      .plan-price .amount {
+        color: var(--text-primary);
+      }
+      
+      .plan-price .period {
+        font-size: 16px;
+        color: var(--text-secondary);
+        font-weight: 500;
+      }
+      
+      .plan-description {
+        color: var(--text-secondary);
+        margin-bottom: 32px;
+        font-size: 16px;
+      }
+      
+      .features {
+        text-align: left;
+        margin-bottom: 32px;
+      }
+      
+      .feature {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 12px;
+        align-items: flex-start;
+      }
+      
+      .feature-icon {
+        color: var(--forest);
+        font-size: 16px;
+        flex-shrink: 0;
+        margin-top: 2px;
+        width: 20px;
+        height: 20px;
+        background: rgba(6, 96, 80, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+      }
+      
+      .feature-text {
+        color: var(--text-secondary);
+        font-size: 15px;
+        line-height: 1.5;
+      }
+      
+      .cta-section { 
+        text-align: center;
+        background: var(--white);
+        border-radius: 20px;
+        padding: 80px 48px;
+        border: 1px solid var(--border);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+      }
+      
+      .cta-section h2 {
+        font-size: clamp(28px, 4vw, 48px);
+        margin-bottom: 16px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+      
+      .cta-section .lead {
+        color: var(--text-secondary);
+        font-size: 18px;
+        margin: 0 auto 32px;
+        line-height: 1.6;
+        max-width: 600px;
+      }
+      
+      .cta-section .btn { 
+        margin: 0 8px; 
+        width: auto;
+      }
+      
+      .faq {
+        margin-top: 80px;
+      }
+      
+      .faq h2 {
+        font-size: clamp(28px, 4vw, 48px);
+        margin-bottom: 16px;
+        text-align: center;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+      
+      .faq-lead {
+        color: var(--text-secondary);
+        font-size: 18px;
+        text-align: center;
+        margin: 0 auto 48px;
+        line-height: 1.6;
+        max-width: 600px;
+      }
+      
+      .faq-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 24px;
+        margin-top: 32px;
+      }
+      
+      .faq-item {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 32px;
+        transition: all 0.2s;
+      }
+      
+      .faq-item:hover {
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        transform: translateY(-2px);
+      }
+      
+      .faq-item h4 {
+        font-size: 18px;
+        margin-bottom: 12px;
+        font-weight: 600;
+        color: var(--text-primary);
+      }
+      
+      .faq-item p {
+        color: var(--text-secondary);
+        line-height: 1.6;
+        margin: 0;
+      }
+      
+      footer {
+        padding: 64px 0;
+        background: var(--light-bg);
+        color: var(--text-muted);
+        border-top: 1px solid var(--border);
+      }
+      
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 32px;
+      }
+      
+      .footer-col a {
+        display: block;
+        color: var(--text-muted);
+        padding: 8px 0;
+        transition: color 0.2s;
+      }
+      
+      .footer-col a:hover {
+        color: var(--forest);
+      }
+      
+      @media (max-width: 768px) {
+        .container { padding: 0 20px; max-width: 100%; }
+        .pricing-grid { 
+          grid-template-columns: 1fr; 
+          max-width: 100%;
+          margin: 40px 0 0;
+          gap: 24px;
+        }
+        .faq-grid { 
+          grid-template-columns: 1fr;
+          gap: 24px; 
+        }
+        .nav-links { display: none; }
+        .mobile-menu-toggle { display: flex; }
+        .nav { position: relative; padding: 12px 0; }
+        .hero { padding: 60px 0 40px; }
+        .hero h1 { font-size: clamp(32px, 9vw, 48px); line-height: 1.2; margin-bottom: 20px; }
+        .hero p { font-size: 18px; line-height: 1.5; margin-bottom: 32px; padding: 0 10px; }
+        .section { padding: 50px 0; }
+        .pricing-card { padding: 40px 24px; margin: 0; }
+        .pricing-card.featured { 
+          transform: none; 
+          margin: 0;
+          border-width: 2px;
+        }
+        .cta-section { padding: 60px 24px; }
+        .faq-item { padding: 32px 24px; }
+        h2 { font-size: clamp(28px, 7vw, 40px); text-align: center; margin-bottom: 20px; padding: 0 10px; }
+        p.lead, .faq-lead { font-size: 18px; padding: 0 10px; margin-bottom: 40px; }
+        .logo img { height: 32px; }
+        .footer-grid { grid-template-columns: 1fr; gap: 32px; text-align: center; }
+        .footer-col { margin-bottom: 24px; }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="nav container fade-in">
+        <a href="/" class="logo">
+          <img src="/logo.png" alt="BLDRpage">
+        </a>
+        
+        <div class="nav-links">
+          <div class="nav-item">
+            <a href="/product">
+              Product
+              <span class="dropdown-arrow">▼</span>
+            </a>
+            <div class="dropdown">
+              <a href="/product">Overview</a>
+              <a href="/product/ai">AI Features</a>
+              <a href="/product/personalization">Personalization</a>
+              <a href="/product/publish-and-track">Publish & Track</a>
+            </div>
+          </div>
+          <a href="/solutions">Solutions</a>
+          <a href="/resources">Resources</a>
+          <a href="/pricing">Pricing</a>
+          <a href="/login">Sign In</a>
+          <a href="/start" class="btn btn-primary" style="width: auto;">Get Started</a>
+        </div>
+        
+        <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+      
+      <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-dropdown">
+          <a href="/product" class="mobile-dropdown-toggle" onclick="toggleMobileDropdown(event)">Product ▼</a>
+          <div class="mobile-dropdown-content">
+            <a href="/product">Overview</a>
+            <a href="/product/ai">AI Features</a>
+            <a href="/product/personalization">Personalization</a>
+            <a href="/product/publish-and-track">Publish & Track</a>
+          </div>
+        </div>
+        <a href="/solutions">Solutions</a>
+        <a href="/resources">Resources</a>
+        <a href="/pricing">Pricing</a>
+        <a href="/login">Sign In</a>
+        <a href="/start" class="btn btn-primary">Get Started</a>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section class="hero container">
+        <h1 class="fade-in">Simple, <span class="gradient-text">transparent</span> pricing</h1>
+        <p class="fade-in-delay-1">Start free and upgrade when you're ready to scale. No hidden fees, no surprises.</p>
+      </section>
+
+      <!-- Pricing -->
+      <section class="section container">
+        <div class="pricing-grid fade-in-delay-2">
+          <div class="pricing-card">
+            <div class="plan-name">Free</div>
+            <div class="plan-price">
+              <span class="currency">$</span><span class="amount">0</span>
+              <span class="period">/month</span>
+            </div>
+            <div class="plan-description">Perfect for getting started</div>
+            
+            <div class="features">
+              <div class="feature">
+                <div class="feature-icon">✓</div>
+                <div class="feature-text">3 landing pages</div>
+              </div>
+              <div class="feature">
+                <div class="feature-icon">✓</div>
+                <div class="feature-text">AI page generation</div>
+              </div>
+              <div class="feature">
+                <div class="feature-icon">✓</div>
+                <div class="feature-text">Basic personalization</div>
+              </div>
+              <div class="feature">
+                <div class="feature-icon">✓</div>
+                <div class="feature-text">Visual editor</div>
+              </div>
+              <div class="feature">
+                <div class="feature-icon">✓</div>
+                <div class="feature-text">Basic analytics</div>
+              </div>
+              <div class="feature">
+                <div class="feature-icon">✓</div>
+                <div class="feature-text">Community support</div>
+              </div>
+            </div>
+            
+            <a href="/start" class="btn btn-ghost">Start free</a>
+          </div>
+          
+          <div class="pricing-card featured">
+            <div class="plan-name">Pro</div>
+            <div class="plan-price">
+              <span class="currency">$</span><span class="amount">49</span>
+              <span class="period">/month</span>
+            </div>
+            <div class="plan-description">For growing teams</div>
+            
+            <div class="features">
+              <div class="feature">
+                <div class="feature-icon">✓</div>
+                <div class="feature-text">Everything in Free</div>
+              </div>
+              <div class="feature">
+                <div class="feature-icon">✓</div>
+                <div class="feature-text">50 landing pages</div>
+              </div>
+              <div class="feature">
+                <div class="feature-icon">✓</div>
+                <div class="feature-text">Advanced personalization</div>
+              </div>
+              <div class="feature">
+                <div class="feature-icon">✓</div>
+                <div class="feature-text">Custom domains</div>
+              </div>
+              <div class="feature">
+                <div class="feature-icon">✓</div>
+                <div class="feature-text">Scheduled publishing</div>
+              </div>
+              <div class="feature">
+                <div class="feature-icon">✓</div>
+                <div class="feature-text">Advanced analytics</div>
+              </div>
+              <div class="feature">
+                <div class="feature-icon">✓</div>
+                <div class="feature-text">Priority support</div>
+              </div>
+            </div>
+            
+            <a href="/start" class="btn btn-primary">Start free trial</a>
+          </div>
+          
+          <div class="pricing-card">
+            <div class="plan-name">Business</div>
+            <div class="plan-price">
+              <span class="currency">$</span><span class="amount">199</span>
+              <span class="period">/month</span>
+            </div>
+            <div class="plan-description">For scaling organizations</div>
+            
+            <div class="features">
+              <div class="feature">
+                <div class="feature-icon">✓</div>
+                <div class="feature-text">Everything in Pro</div>
+              </div>
+              <div class="feature">
+                <div class="feature-icon">✓</div>
+                <div class="feature-text">Unlimited landing pages</div>
+              </div>
+              <div class="feature">
+                <div class="feature-icon">✓</div>
+                <div class="feature-text">Team collaboration</div>
+              </div>
+              <div class="feature">
+                <div class="feature-icon">✓</div>
+                <div class="feature-text">White‑label options</div>
+              </div>
+              <div class="feature">
+                <div class="feature-icon">✓</div>
+                <div class="feature-text">API access</div>
+              </div>
+              <div class="feature">
+                <div class="feature-icon">✓</div>
+                <div class="feature-text">SSO & advanced security</div>
+              </div>
+              <div class="feature">
+                <div class="feature-icon">✓</div>
+                <div class="feature-text">Dedicated support</div>
+              </div>
+            </div>
+            
+            <a href="/contact" class="btn btn-ghost">Contact sales</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="section container faq">
+        <h2 class="fade-in">Frequently asked questions</h2>
+        <p class="faq-lead fade-in-delay-1">Everything you need to know about our pricing and plans.</p>
+        
+        <div class="faq-grid fade-in-delay-2">
+          <div class="faq-item">
+            <h4>Can I cancel anytime?</h4>
+            <p>Yes, you can cancel your subscription at any time. No long‑term contracts or hidden fees. Your account will remain active until the end of your billing period.</p>
+          </div>
+          
+          <div class="faq-item">
+            <h4>Do you offer refunds?</h4>
+            <p>We offer a 30‑day money‑back guarantee on all paid plans. If you're not satisfied with BLDRpage, we'll refund your payment in full.</p>
+          </div>
+          
+          <div class="faq-item">
+            <h4>Can I upgrade or downgrade?</h4>
+            <p>Yes, you can change your plan at any time from your account settings. Upgrades take effect immediately, and downgrades take effect at the next billing cycle.</p>
+          </div>
+          
+          <div class="faq-item">
+            <h4>Is there a free trial?</h4>
+            <p>Yes! You can start with our free plan with no time limit. When you're ready to unlock more features, upgrade to Pro with a 14-day free trial.</p>
+          </div>
+          
+          <div class="faq-item">
+            <h4>What payment methods do you accept?</h4>
+            <p>We accept all major credit cards (Visa, MasterCard, American Express) and PayPal. Enterprise customers can pay by invoice with NET-30 terms.</p>
+          </div>
+          
+          <div class="faq-item">
+            <h4>Do you offer discounts?</h4>
+            <p>We offer 20% discounts for annual billing and volume discounts for teams with 10+ users. Students and non-profits get 50% off all plans.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="section container">
+        <div class="cta-section fade-in-delay-3">
+          <h2>Ready to get started?</h2>
+          <p class="lead">Join thousands of teams using BLDRpage to create better pages faster.</p>
+          <div style="margin-top: 32px;">
+            <a class="btn btn-primary" href="/start">Start free</a>
+            <a class="btn btn-ghost" href="/contact">Contact sales</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-grid">
+        <div class="footer-col">
+          <div class="logo">
+            <img src="/logo.png" alt="BLDRpage">
+          </div>
+          <p style="margin: 16px 0 0; color: var(--text-muted);">AI‑powered landing pages at scale for modern marketing teams.</p>
+        </div>
+        <div class="footer-col">
+          <strong style="display: block; margin-bottom: 16px; font-weight: 600; color: var(--text-primary);">Product</strong>
+          <a href="/product">Overview</a>
+          <a href="/product/ai">AI Features</a>
+          <a href="/product/personalization">Personalization</a>
+          <a href="/product/publish-and-track">Analytics</a>
+        </div>
+        <div class="footer-col">
+          <strong style="display: block; margin-bottom: 16px; font-weight: 600; color: var(--text-primary);">Company</strong>
+          <a href="/about">About</a>
+          <a href="/contact">Contact</a>
+          <a href="/pricing">Pricing</a>
+          <a href="/careers">Careers</a>
+        </div>
+        <div class="footer-col">
+          <strong style="display: block; margin-bottom: 16px; font-weight: 600; color: var(--text-primary);">Resources</strong>
+          <a href="/blog">Blog</a>
+          <a href="/guides">Guides</a>
+          <a href="/templates">Templates</a>
+          <a href="/privacy">Privacy</a>
+          <a href="/terms">Terms</a>
+        </div>
+      </div>
+      <div class="container" style="text-align: center; margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--border);">
+        <p style="margin: 0; font-size: 14px; color: var(--text-muted);">
+          © 2025 BLDRpage. All rights reserved.
+        </p>
+      </div>
+    </footer>
+    
+    <script>
+      function toggleMobileMenu() {
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (mobileMenu) {
+          mobileMenu.classList.toggle('active');
+        }
+      }
+      
+      // Make function globally available
+      window.toggleMobileMenu = toggleMobileMenu;
+      
+      function toggleMobileDropdown(event) {
+        event.preventDefault();
+        const dropdownContent = event.target.nextElementSibling;
+        dropdownContent.classList.toggle('active');
+        
+        const arrow = event.target.innerHTML.includes('▼') ? '▲' : '▼';
+        event.target.innerHTML = event.target.innerHTML.replace(/[▼▲]/, arrow);
+      }
+      
+      document.addEventListener('click', function(event) {
+        const mobileMenu = document.getElementById('mobileMenu');
+        const toggle = document.querySelector('.mobile-menu-toggle');
+        
+        if (!toggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+          mobileMenu.classList.remove('active');
+        }
+      });
+      
+      // Close mobile menu and dropdowns when clicking any navigation link
+      document.addEventListener('DOMContentLoaded', function() {
+        const navLinks = document.querySelectorAll('.mobile-menu a:not(.mobile-dropdown-toggle)');
+        navLinks.forEach(link => {
+          link.addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.remove('active');
+            
+            // Close any open dropdowns
+            const dropdowns = document.querySelectorAll('.mobile-dropdown-content');
+            dropdowns.forEach(dropdown => {
+              dropdown.classList.remove('active');
+            });
+            
+            // Reset dropdown arrows
+            const toggles = document.querySelectorAll('.mobile-dropdown-toggle');
+            toggles.forEach(toggle => {
+              toggle.innerHTML = toggle.innerHTML.replace(/[▼▲]/, '▼');
+            });
+          });
+        });
+        
+        // Fix desktop dropdown closing when clicking dropdown links
+        const desktopDropdownLinks = document.querySelectorAll('.dropdown a');
+        desktopDropdownLinks.forEach(link => {
+          link.addEventListener('click', function() {
+            const navItem = this.closest('.nav-item');
+            if (navItem) {
+              // Remove active class and add clicked class to force dropdown closed
+              const wasActive = navItem.classList.contains('active');
+              navItem.classList.remove('active');
+              navItem.classList.add('clicked');
+              
+              // Clean up after navigation
+              setTimeout(() => {
+                navItem.classList.remove('clicked');
+                if (wasActive) {
+                  navItem.classList.add('active');
+                }
+              }, 200);
+            }
+          });
+        });
+      });
+      
+      document.addEventListener('DOMContentLoaded', () => {
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.style.animationPlayState = 'running';
+            }
+          });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in, .fade-in-delay-1, .fade-in-delay-2, .fade-in-delay-3').forEach(el => {
+          el.style.animationPlayState = 'paused';
+          observer.observe(el);
+        });
+      });
+    </script>
+  </body>
+</html>

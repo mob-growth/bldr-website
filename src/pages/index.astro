@@ -1,16 +1,1263 @@
 ---
-
+const title = "BLDRpage — AI landing pages at scale";
+const description =
+  "Build, personalize, and publish high‑converting landing pages with AI. For PPC and sales teams who need to test, personalize, and ship at scale.";
+const url = "https://bldrpage.com";
 ---
+<html lang="en" class="scroll-smooth antialiased">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={url} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --forest: #066050;
+        --olive: #8F7C25;
+        --blue: #1C86BC;
+        --orange: #DF7616;
+        --white: #FFFFFF;
+        --light-bg: #f8fafc;
+        --text-primary: #0f172a;
+        --text-secondary: #475569;
+        --text-muted: #64748b;
+        --border: #e2e8f0;
+        --radius: 12px;
+        --maxw: 1120px;
+      }
+      
+      * { box-sizing: border-box; }
+      
+      body { 
+        font-family: 'Inter', sans-serif; 
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, var(--light-bg) 0%, var(--white) 100%);
+        color: var(--text-primary);
+      }
+      
+      a { color: inherit; text-decoration: none; }
+      
+      .fade-in { 
+        opacity: 0; 
+        transform: translateY(20px); 
+        animation: fadeInUp 0.6s ease-out forwards; 
+      }
+      .fade-in-delay-1 { animation-delay: 0.1s; }
+      .fade-in-delay-2 { animation-delay: 0.2s; }
+      .fade-in-delay-3 { animation-delay: 0.3s; }
+      .fade-in-delay-4 { animation-delay: 0.4s; }
+      .fade-in-delay-5 { animation-delay: 0.5s; }
+      
+      .slide-in-left { 
+        opacity: 0; 
+        transform: translateX(-30px); 
+        animation: slideInLeft 0.8s ease-out forwards; 
+      }
+      .slide-in-right { 
+        opacity: 0; 
+        transform: translateX(30px); 
+        animation: slideInRight 0.8s ease-out forwards; 
+      }
+      
+      .float { animation: float 6s ease-in-out infinite; }
+      .float-delay { animation: float 6s ease-in-out infinite; animation-delay: -3s; }
+      
+      @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+      @keyframes slideInLeft { to { opacity: 1; transform: translateX(0); } }
+      @keyframes slideInRight { to { opacity: 1; transform: translateX(0); } }
+      @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+      
+      .container { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+      
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 24px;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 14px;
+        border: 2px solid transparent;
+        transition: all 0.2s;
+        cursor: pointer;
+      }
+      
+      .btn-primary {
+        background: linear-gradient(135deg, var(--forest) 0%, var(--blue) 100%);
+        color: var(--white);
+        box-shadow: 0 4px 12px rgba(6, 96, 80, 0.3);
+      }
+      .btn-primary:hover {
+        box-shadow: 0 8px 24px rgba(6, 96, 80, 0.4);
+        transform: translateY(-2px);
+      }
+      
+      .btn-ghost {
+        background: var(--white);
+        border-color: var(--border);
+        color: var(--text-secondary);
+      }
+      .btn-ghost:hover {
+        background: var(--light-bg);
+        border-color: var(--forest);
+      }
+      
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, rgba(6, 96, 80, 0.1) 0%, rgba(28, 134, 188, 0.1) 100%);
+        color: var(--forest);
+        font-size: 14px;
+        font-weight: 500;
+        border: 1px solid rgba(6, 96, 80, 0.2);
+      }
+      
+      header {
+        position: sticky;
+        top: 0;
+        backdrop-filter: saturate(120%) blur(8px);
+        background: rgba(255, 255, 255, 0.8);
+        border-bottom: 1px solid var(--border);
+        z-index: 50;
+      }
+      
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 0;
+      }
+      
+      .nav a {
+        color: var(--text-secondary);
+        transition: color 0.2s;
+      }
+      .nav a:hover {
+        color: var(--forest);
+      }
+      
+      /* Override nav link color for primary buttons */
+      .nav .btn-primary {
+        color: var(--white) !important;
+      }
+      .nav .btn-primary:hover {
+        color: var(--white) !important;
+      }
+      
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        font-weight: 600;
+        font-size: 20px;
+        color: var(--text-primary);
+        transition: transform 0.2s ease;
+      }
+      
+      .logo:hover {
+        transform: scale(1.05);
+      }
+      
+      .logo img {
+        height: 32px;
+        width: auto;
+        max-width: 160px;
+      }
+      
+      .nav-links {
+        display: flex;
+        gap: 32px;
+        align-items: center;
+      }
+      
+      .nav-item {
+        position: relative;
+      }
+      
+      .nav-item > a {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        color: var(--text-secondary);
+        transition: color 0.2s;
+      }
+      
+      .nav-item:hover > a,
+      .nav-item.active > a {
+        color: var(--forest);
+      }
+      
+      .dropdown {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        padding: 16px 0;
+        min-width: 200px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8px);
+        transition: all 0.2s ease;
+        z-index: 100;
+      }
+      
+      .nav-item:hover .dropdown,
+      .nav-item.active .dropdown {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+      
+      .nav-item.clicked .dropdown,
+      .nav-item.active.clicked .dropdown {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        transform: translateY(-8px) !important;
+        pointer-events: none !important;
+      }
+      
+      .dropdown a {
+        display: block;
+        padding: 12px 20px;
+        color: var(--text-secondary);
+        transition: all 0.2s;
+        border-left: 3px solid transparent;
+      }
+      
+      .dropdown a:hover,
+      .dropdown a.active {
+        color: var(--forest);
+        background: var(--light-bg);
+        border-left-color: var(--forest);
+      }
+      
+      .dropdown-arrow {
+        font-size: 12px;
+        transition: transform 0.2s;
+      }
+      
+      .nav-item:hover .dropdown-arrow,
+      .nav-item.active .dropdown-arrow {
+        transform: rotate(180deg);
+      }
+      
+      .mobile-menu-toggle {
+        display: none;
+        flex-direction: column;
+        gap: 4px;
+        cursor: pointer;
+        padding: 8px;
+      }
+      
+      .mobile-menu-toggle span {
+        width: 24px;
+        height: 3px;
+        background: var(--text-primary);
+        border-radius: 2px;
+        transition: all 0.3s;
+      }
+      
+      .mobile-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        border-bottom: 1px solid var(--border);
+        padding: 24px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+      
+      .mobile-menu.active {
+        display: block;
+      }
+      
+      .mobile-menu a {
+        display: block;
+        padding: 12px 0;
+        color: var(--text-secondary);
+        border-bottom: 1px solid var(--border);
+        transition: color 0.2s;
+      }
+      
+      .mobile-menu a:last-child {
+        border-bottom: none;
+      }
+      
+      .mobile-menu a:hover {
+        color: var(--forest);
+      }
+      
+      .mobile-menu .btn {
+        margin-top: 16px;
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .mobile-dropdown {
+        position: relative;
+      }
+      
+      .mobile-dropdown-toggle {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+      }
+      
+      .mobile-dropdown-content {
+        display: none;
+        background: var(--light-bg);
+        border-radius: 8px;
+        margin: 8px 0;
+        padding: 8px 0;
+      }
+      
+      .mobile-dropdown-content.active {
+        display: block;
+      }
+      
+      .mobile-dropdown-content a {
+        padding: 8px 16px;
+        margin: 4px 0;
+        font-size: 14px;
+        color: var(--text-muted);
+        border: none;
+      }
+      
+      .mobile-dropdown-content a:hover {
+        background: var(--white);
+        color: var(--forest);
+      }
+      
+      .hero {
+        min-height: 80vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+        align-items: center;
+        width: 100%;
+      }
+      
+      .hero h1 {
+        font-size: clamp(40px, 5vw, 72px);
+        line-height: 1.1;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin: 0 0 24px;
+      }
+      
+      .hero p {
+        font-size: 18px;
+        color: var(--text-secondary);
+        margin: 0 0 32px;
+        line-height: 1.6;
+        max-width: 600px;
+      }
+      
+      .hero-cta {
+        display: flex;
+        gap: 16px;
+        margin-bottom: 48px;
+      }
+      
+      .gradient-text {
+        background: linear-gradient(135deg, var(--forest) 0%, var(--blue) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      
+      .floating-elements {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+      
+      .floating-card {
+        position: absolute;
+        background: var(--white);
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+        border: 1px solid var(--border);
+      }
+      
+      .floating-card.card-1 {
+        top: 20%;
+        right: 10%;
+        width: 280px;
+        transform: rotate(-5deg);
+      }
+      
+      .floating-card.card-2 {
+        bottom: 20%;
+        right: 20%;
+        width: 240px;
+        transform: rotate(3deg);
+      }
+      
+      .floating-card.card-3 {
+        top: 40%;
+        right: -5%;
+        width: 200px;
+        transform: rotate(8deg);
+      }
+      
+      .card-header {
+        display: flex;
+        align-items: center;
+        justify-content: between;
+        margin-bottom: 16px;
+      }
+      
+      .card-title {
+        font-weight: 600;
+        font-size: 16px;
+        margin: 0;
+      }
+      
+      .card-subtitle {
+        font-size: 14px;
+        color: var(--text-muted);
+        margin: 4px 0 0;
+      }
+      
+      .card-metric {
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--forest);
+        margin: 8px 0 4px;
+      }
+      
+      .card-change {
+        font-size: 12px;
+        color: #059669;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+      
+      .partners-section {
+        padding: 48px 0;
+      }
+      
+      .partners-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 24px;
+        margin-top: 32px;
+      }
+      
+      .partner-card {
+        display: flex;
+        align-items: center;
+        justify-center;
+        padding: 16px 24px;
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        transition: all 0.2s;
+      }
+      
+      .partner-card:hover {
+        border-color: var(--forest);
+        box-shadow: 0 4px 12px rgba(6, 96, 80, 0.1);
+      }
+      
+      .section {
+        padding: 80px 0;
+      }
+      
+      .panel {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        padding: 48px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+      }
+      
+      h2 {
+        font-size: clamp(28px, 4vw, 48px);
+        margin: 0 0 16px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+      
+      p.lead {
+        color: var(--text-secondary);
+        font-size: 18px;
+        margin: 0 0 32px;
+        line-height: 1.6;
+      }
+      
+      .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 24px;
+      }
+      
+      .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 24px;
+      }
+      
+      .card {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 32px;
+        transition: all 0.2s;
+      }
+      
+      .card:hover {
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        transform: translateY(-4px);
+      }
+      
+      .card h3 {
+        margin: 0 0 12px;
+        font-size: 20px;
+        font-weight: 600;
+      }
+      
+      .card p {
+        margin: 0;
+        color: var(--text-secondary);
+        line-height: 1.6;
+      }
+      
+      .pricing-cta {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        padding: 64px 48px;
+        text-align: center;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      
+      .pricing-cta h2 {
+        font-size: clamp(32px, 5vw, 48px);
+        font-weight: 700;
+        margin-bottom: 16px;
+        line-height: 1.2;
+      }
+      
+      .pricing-cta .lead {
+        font-size: 20px;
+        color: var(--text-secondary);
+        margin-bottom: 40px;
+        line-height: 1.6;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      
+      .kpis {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: 32px 0 40px;
+      }
+      
+      .kpi {
+        background: rgba(6, 96, 80, 0.1);
+        color: var(--forest);
+        padding: 12px 24px;
+        border-radius: 999px;
+        font-weight: 600;
+        font-size: 15px;
+        border: 1px solid rgba(6, 96, 80, 0.2);
+        transition: all 0.2s ease;
+      }
+      
+      .kpi:hover {
+        background: rgba(6, 96, 80, 0.15);
+        transform: translateY(-1px);
+      }
+      
+      .pricing-actions {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      
+      footer {
+        padding: 64px 0;
+        background: var(--light-bg);
+        color: var(--text-muted);
+        border-top: 1px solid var(--border);
+      }
+      
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 32px;
+      }
+      
+      .footer-col a {
+        display: block;
+        color: var(--text-muted);
+        padding: 8px 0;
+        transition: color 0.2s;
+      }
+      
+      .footer-col a:hover {
+        color: var(--forest);
+      }
+      
+      @media (max-width: 768px) {
+        .container {
+          padding: 0 20px;
+          max-width: 100%;
+        }
+        
+        .hero-grid {
+          grid-template-columns: 1fr;
+          text-align: center;
+          gap: 32px;
+        }
+        
+        .floating-card {
+          display: none;
+        }
+        
+        .nav-links {
+          display: none;
+        }
+        
+        .mobile-menu-toggle {
+          display: flex;
+        }
+        
+        .nav {
+          position: relative;
+        }
+        
+        .hero {
+          padding: 60px 0 40px;
+        }
+        
+        .hero h1 {
+          font-size: clamp(32px, 9vw, 48px);
+          line-height: 1.2;
+          margin-bottom: 20px;
+        }
+        
+        .hero p {
+          font-size: 18px;
+          line-height: 1.5;
+          margin-bottom: 32px;
+          padding: 0 10px;
+        }
+        
+        .hero-cta {
+          flex-direction: column;
+          align-items: center;
+          gap: 12px;
+        }
+        
+        .hero-cta .btn {
+          width: 100%;
+          max-width: 320px;
+          padding: 16px 24px;
+          font-size: 16px;
+          justify-content: center;
+        }
+        
+        .section {
+          padding: 50px 0;
+        }
+        
+        .panel {
+          padding: 40px 24px;
+          margin: 0 -4px 40px;
+          border-radius: 16px;
+        }
+        
+        .grid-3 {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+        
+        .grid-2 {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+        
+        .partners-grid {
+          grid-template-columns: 1fr;
+          gap: 16px;
+          text-align: center;
+        }
+        
+        .partner-card {
+          padding: 20px;
+        }
+        
+        .proofbar {
+          padding: 32px 20px;
+          text-align: center;
+        }
+        
+        .proofbar span {
+          display: block;
+          margin: 8px 0;
+        }
+        
+        .pricing-cta {
+          padding: 48px 24px;
+          margin: 0 20px;
+        }
+        
+        .pricing-cta h2 {
+          font-size: clamp(28px, 8vw, 40px);
+        }
+        
+        .pricing-cta .lead {
+          font-size: 18px;
+          margin-bottom: 32px;
+        }
+        
+        .kpis {
+          gap: 8px;
+          margin: 24px 0 32px;
+        }
+        
+        .kpi {
+          font-size: 14px;
+          padding: 10px 16px;
+        }
+        
+        .pricing-actions {
+          flex-direction: column;
+          gap: 12px;
+        }
+        
+        .pricing-actions .btn {
+          width: 100%;
+          max-width: 280px;
+        }
+        
+        .card {
+          padding: 32px 24px;
+          text-align: left;
+        }
+        
+        .card h3 {
+          font-size: 22px;
+          margin-bottom: 16px;
+        }
+        
+        .card p {
+          font-size: 16px;
+          line-height: 1.6;
+        }
+        
+        h2 {
+          font-size: clamp(28px, 7vw, 40px);
+          text-align: center;
+          margin-bottom: 20px;
+          padding: 0 10px;
+        }
+        
+        p.lead {
+          font-size: 18px;
+          padding: 0 10px;
+          margin-bottom: 40px;
+        }
+        
+        .kpis {
+          flex-direction: column;
+          align-items: center;
+          gap: 16px;
+          margin-top: 32px;
+        }
+        
+        .kpi {
+          width: auto;
+          min-width: 200px;
+          text-align: center;
+          padding: 16px 24px;
+        }
+        
+        .logo img {
+          height: 32px;
+        }
+        
+        .footer-grid {
+          grid-template-columns: 1fr;
+          gap: 32px;
+          text-align: center;
+        }
+        
+        .footer-col {
+          margin-bottom: 24px;
+        }
+      }
+    </style>
+    <script type="application/ld+json">
+      {
+        "@context":"https://schema.org",
+        "@type":"SoftwareApplication",
+        "name":"BLDRpage",
+        "applicationCategory":"BusinessApplication",
+        "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+        "url":"https://bldrpage.com"
+      }
+    </script>
+  </head>
+  <body>
+    <div class="min-h-screen">
+      
+      <!-- Enhanced Navbar -->
+      <header>
+        <nav class="nav container fade-in">
+          <!-- Logo -->
+          <a href="/" class="logo">
+            <img src="/logo.png" alt="BLDRpage">
+          </a>
+          
+          <!-- Desktop Menu -->
+          <div class="nav-links">
+            <div class="nav-item">
+              <a href="/product">
+                Product
+                <span class="dropdown-arrow">▼</span>
+              </a>
+              <div class="dropdown">
+                <a href="/product">Overview</a>
+                <a href="/product/ai">AI Features</a>
+                <a href="/product/personalization">Personalization</a>
+                <a href="/product/publish-and-track">Publish & Track</a>
+              </div>
+            </div>
+            <a href="/solutions">Solutions</a>
+            <a href="/resources">Resources</a>
+            <a href="/pricing">Pricing</a>
+            <a href="/login">Sign In</a>
+            <a href="/start" class="btn btn-primary">Get Started</a>
+          </div>
+          
+          <!-- Mobile Menu Toggle -->
+          <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </nav>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+          <div class="mobile-dropdown">
+            <a href="/product" class="mobile-dropdown-toggle" onclick="toggleMobileDropdown(event)">Product ▼</a>
+            <div class="mobile-dropdown-content">
+              <a href="/product">Overview</a>
+              <a href="/product/ai">AI Features</a>
+              <a href="/product/personalization">Personalization</a>
+              <a href="/product/publish-and-track">Publish & Track</a>
+            </div>
+          </div>
+          <a href="/solutions">Solutions</a>
+          <a href="/resources">Resources</a>
+          <a href="/pricing">Pricing</a>
+          <a href="/login">Sign In</a>
+          <a href="/start" class="btn btn-primary">Get Started</a>
+        </div>
+      </header>
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+      <!-- Enhanced Hero Section -->
+      <section class="hero container">
+        <div class="hero-grid">
+          
+          <!-- Left Content -->
+          <div class="slide-in-left">
+            <span class="badge fade-in">
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 256 256">
+                <path d="M208,144a15.78,15.78,0,0,1-10.42,14.94L146,178l-19.06,51.58a16,16,0,0,1-29.88,0L78,178l-51.58-19.06a16,16,0,0,1,0-29.88L78,110l19.06-51.58a16,16,0,0,1,29.88,0L146,110l51.58,19.06A15.78,15.78,0,0,1,208,144Z"></path>
+              </svg>
+              AI‑powered landing pages
+            </span>
+            
+            <h1 class="fade-in-delay-1">
+              <span class="gradient-text">Build</span> thousands of <span class="gradient-text">personalized</span> landing pages with AI.
+            </h1>
+            
+            <p class="fade-in-delay-2">
+              For PPC and sales teams who need to test, personalize, and ship at scale — without design or engineering bottlenecks.
+            </p>
+            
+            <div class="hero-cta fade-in-delay-3">
+              <a href="/start" class="btn btn-primary">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 256 256">
+                  <path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"></path>
+                </svg>
+                Start free
+              </a>
+              <a href="/product/ai" class="btn btn-ghost">
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 256 256">
+                  <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm36.44-94.66-48-32A8,8,0,0,0,104,96v64a8,8,0,0,0,12.44,6.66l48-32a8,8,0,0,0,0-13.32ZM120,145.05V111l25.58,17Z"></path>
+                </svg>
+                Watch demo
+              </a>
+            </div>
+          </div>
+          
+          <!-- Enhanced Right Visual -->
+          <div class="hero-visual slide-in-right">
+            <!-- Floating Cards -->
+            <div class="floating-elements">
+              <div class="floating-card card-1 float">
+                <div class="card-header">
+                  <h3 class="card-title">Landing Pages</h3>
+                </div>
+                <div class="card-metric">2,847</div>
+                <p class="card-subtitle">pages created this month</p>
+                <div class="card-change">
+                  <svg width="12" height="12" fill="currentColor" viewBox="0 0 256 256">
+                    <path d="M205.66,85.66l-96,96a8,8,0,0,1-11.32,0l-96-96A8,8,0,0,1,13.66,74.34L128,188.69,242.34,74.34a8,8,0,0,1,11.32,11.32Z"></path>
+                  </svg>
+                  +32% vs last month
+                </div>
+              </div>
+              
+              <div class="floating-card card-2 float-delay">
+                <div class="card-header">
+                  <h3 class="card-title">Conversion Rate</h3>
+                </div>
+                <div class="card-metric">24.7%</div>
+                <p class="card-subtitle">average across campaigns</p>
+                <div class="card-change">
+                  <svg width="12" height="12" fill="currentColor" viewBox="0 0 256 256">
+                    <path d="M205.66,85.66l-96,96a8,8,0,0,1-11.32,0l-96-96A8,8,0,0,1,13.66,74.34L128,188.69,242.34,74.34a8,8,0,0,1,11.32,11.32Z"></path>
+                  </svg>
+                  +18% improvement
+                </div>
+              </div>
+              
+              <div class="floating-card card-3 float">
+                <div class="card-header">
+                  <h3 class="card-title">Time Saved</h3>
+                </div>
+                <div class="card-metric">127hrs</div>
+                <p class="card-subtitle">saved per month</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="proof container">
+        <div class="proofbar panel">
+          <span>Trusted by 50K+ teams</span>
+          <span class="logo">Shopify</span>
+          <span class="logo">HubSpot</span>
+          <span class="logo">Salesforce</span>
+          <span class="logo">Stripe</span>
+          <span class="logo">Binance</span>
+        </div>
+      </section>
+
+      <section class="section container">
+        <h2>How it works</h2>
+        <p class="lead">Get from idea to high-converting landing pages in minutes, not weeks.</p>
+        <div class="grid-3">
+          <div class="card">
+            <span class="badge">Step 1</span>
+            <h3>Describe your page</h3>
+            <p>Tell the AI what you need — audience, offer, goal. Get a complete multi‑section draft in seconds.</p>
+          </div>
+          <div class="card">
+            <span class="badge">Step 2</span>
+            <h3>Personalize at scale</h3>
+            <p>Use simple tokens like &#123;&#123;company&#125;&#125;, &#123;&#123;industry&#125;&#125;, &#123;&#123;city&#125;&#125; to tailor text, images, and CTAs for every visitor.</p>
+          </div>
+          <div class="card">
+            <span class="badge">Step 3</span>
+            <h3>Publish & track</h3>
+            <p>Ship to your domain, schedule releases, and see views, clicks, and form submissions in real-time.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section container">
+        <div class="panel">
+          <h2>See AI magic in action</h2>
+          <p class="lead">Watch AI generate complete landing page sections, then customize visually in seconds.</p>
+          <div class="media">Demo video / screenshot placeholder</div>
+          <div class="kpis">
+            <div class="kpi">From prompt to page in minutes</div>
+            <div class="kpi">Ship hundreds of pages safely</div>
+            <div class="kpi">Built‑in analytics & A/B testing</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section container">
+        <h2>Where BLDRpage shines</h2>
+        <p class="lead">Made for teams who care about speed, consistency, and measurable results.</p>
+        <div class="grid-3">
+          <div class="card">
+            <h3>Marketing & PPC</h3>
+            <p>Create and test message variants per ad group. Keep the winners, iterate on the losers — all without dev resources.</p>
+            <p style="margin-top:10px"><a href="/solutions/marketing-ppc">Learn more →</a></p>
+          </div>
+          <div class="card">
+            <h3>Sales & ABM</h3>
+            <p>Spin up account‑specific pages with relevant proof points, benefits, and the perfect CTA to book more meetings.</p>
+            <p style="margin-top:10px"><a href="/solutions/sales-abm">Learn more →</a></p>
+          </div>
+          <div class="card">
+            <h3>Agencies</h3>
+            <p>Ship high‑quality pages at scale with brand guardrails, client approval flows, and white-label options.</p>
+            <p style="margin-top:10px"><a href="/solutions/agencies">Learn more →</a></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section container">
+        <div class="panel">
+          <h2>Personalize every element</h2>
+          <p class="lead">Use tokens to tailor headlines, images, and CTAs per audience, industry, or location.</p>
+          <div class="grid-2">
+            <div class="card">
+              <h3>Simple token system</h3>
+              <p>Use variables like &#123;&#123;company&#125;&#125;, &#123;&#123;industry&#125;&#125;, &#123;&#123;persona&#125;&#125;, &#123;&#123;city&#125;&#125;, &#123;&#123;cta_text&#125;&#125; throughout your pages.</p>
+              <p style="margin-top:8px">Connect a CSV or Google Sheet and publish hundreds of personalized pages safely.</p>
+            </div>
+            <div class="card">
+              <h3>Real‑world impact</h3>
+              <p>Match ads and emails to pages for stronger message fit — leading to 40%+ better conversion rates on average.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section container">
+        <div class="grid-3">
+          <div class="card">
+            <h3>Custom domains</h3>
+            <p>Publish to your domains and subdomains. Schedule launches and manage multiple sites without dev work.</p>
+          </div>
+          <div class="card">
+            <h3>Performance analytics</h3>
+            <p>See views, clicks, form submissions, and conversion rates. Know what works and what doesn't.</p>
+          </div>
+          <div class="card">
+            <h3>Screenshot generator</h3>
+            <p>Create high‑quality screenshots automatically for approvals, galleries, and social media.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section container">
+        <h2>Proven results</h2>
+        <p class="lead">Real stories from teams using BLDRpage to scale their landing page operations.</p>
+        <div class="grid-3">
+          <div class="card">
+            <h3>B2B SaaS</h3>
+            <p>+43% demo bookings in 30 days with account‑specific landing pages and targeted messaging.</p>
+          </div>
+          <div class="card">
+            <h3>E‑commerce</h3>
+            <p>+28% ROAS by matching ad groups to dynamic landing pages with personalized product recommendations.</p>
+          </div>
+          <div class="card">
+            <h3>Real estate</h3>
+            <p>120+ geo-targeted pages launched in a week, resulting in 2x higher lead quality and faster sales cycles.</p>
+          </div>
+        </div>
+        <p style="margin-top:14px"><a class="btn btn-ghost" href="/examples">See more examples</a></p>
+      </section>
+
+      <!-- Pricing CTA -->
+      <section class="section">
+        <div class="container">
+          <div class="pricing-cta fade-in">
+            <h2>Simple, <span class="gradient-text">transparent</span> pricing</h2>
+            <p class="lead">Start free and upgrade when you're ready to scale. No hidden fees, no surprises — just powerful landing pages for every team.</p>
+            <div class="kpis">
+              <div class="kpi">✨ Free to try</div>
+              <div class="kpi">⚡ No code required</div>
+              <div class="kpi">🔄 Cancel anytime</div>
+            </div>
+            <div class="pricing-actions">
+              <a href="/start" class="btn btn-primary">Start free</a>
+              <a href="/pricing" class="btn btn-ghost">View pricing</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Enhanced Footer -->
+    <footer class="border-t border-slate-200 bg-slate-50/50 py-16">
+      <div class="container footer-grid">
+        <div class="footer-col">
+          <div class="logo mb-4">
+            <img src="/logo.png" alt="BLDRpage">
+          </div>
+          <p class="text-slate-600">AI‑powered landing pages at scale for modern marketing teams.</p>
+        </div>
+        <div class="footer-col">
+          <strong class="block mb-4 font-semibold text-slate-900">Product</strong>
+          <a href="/product">Overview</a>
+          <a href="/product/ai">AI Features</a>
+          <a href="/product/personalization">Personalization</a>
+          <a href="/product/analytics">Analytics</a>
+        </div>
+        <div class="footer-col">
+          <strong class="block mb-4 font-semibold text-slate-900">Company</strong>
+          <a href="/about">About</a>
+          <a href="/contact">Contact</a>
+          <a href="/pricing">Pricing</a>
+          <a href="/careers">Careers</a>
+        </div>
+        <div class="footer-col">
+          <strong class="block mb-4 font-semibold text-slate-900">Resources</strong>
+          <a href="/blog">Blog</a>
+          <a href="/guides">Guides</a>
+          <a href="/templates">Templates</a>
+          <a href="/privacy">Privacy</a>
+          <a href="/terms">Terms</a>
+        </div>
+      </div>
+      <div class="container text-center mt-12 pt-8 border-t border-slate-200">
+        <p class="text-sm text-slate-500">
+          © 2025 BLDRpage. All rights reserved.
+        </p>
+      </div>
+    </footer>
+    
+    <script>
+      // Mobile menu toggle
+      function toggleMobileMenu() {
+        const mobileMenu = document.getElementById('mobileMenu');
+        console.log('Toggle clicked, menu element:', mobileMenu); // Debug log
+        if (mobileMenu) {
+          mobileMenu.classList.toggle('active');
+          console.log('Menu classes:', mobileMenu.className); // Debug log
+        }
+      }
+      
+      // Make function globally available
+      window.toggleMobileMenu = toggleMobileMenu;
+      
+      // Mobile dropdown toggle
+      function toggleMobileDropdown(event) {
+        event.preventDefault();
+        const dropdownContent = event.target.nextElementSibling;
+        dropdownContent.classList.toggle('active');
+        
+        // Update arrow direction
+        const arrow = event.target.innerHTML.includes('▼') ? '▲' : '▼';
+        event.target.innerHTML = event.target.innerHTML.replace(/[▼▲]/, arrow);
+      }
+      
+      // Close mobile menu when clicking outside
+      document.addEventListener('click', function(event) {
+        const mobileMenu = document.getElementById('mobileMenu');
+        const toggle = document.querySelector('.mobile-menu-toggle');
+        
+        if (!toggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+          mobileMenu.classList.remove('active');
+        }
+      });
+      
+      // Close mobile menu and dropdowns when clicking any navigation link
+      document.addEventListener('DOMContentLoaded', function() {
+        const navLinks = document.querySelectorAll('.mobile-menu a:not(.mobile-dropdown-toggle)');
+        navLinks.forEach(link => {
+          link.addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.remove('active');
+            
+            // Close any open dropdowns
+            const dropdowns = document.querySelectorAll('.mobile-dropdown-content');
+            dropdowns.forEach(dropdown => {
+              dropdown.classList.remove('active');
+            });
+            
+            // Reset dropdown arrows
+            const toggles = document.querySelectorAll('.mobile-dropdown-toggle');
+            toggles.forEach(toggle => {
+              toggle.innerHTML = toggle.innerHTML.replace(/[▼▲]/, '▼');
+            });
+          });
+        });
+        
+        // Fix desktop dropdown closing when clicking dropdown links
+        const desktopDropdownLinks = document.querySelectorAll('.dropdown a');
+        desktopDropdownLinks.forEach(link => {
+          link.addEventListener('click', function() {
+            const navItem = this.closest('.nav-item');
+            if (navItem) {
+              // Remove active class and add clicked class to force dropdown closed
+              const wasActive = navItem.classList.contains('active');
+              navItem.classList.remove('active');
+              navItem.classList.add('clicked');
+              
+              // Clean up after navigation
+              setTimeout(() => {
+                navItem.classList.remove('clicked');
+                if (wasActive) {
+                  navItem.classList.add('active');
+                }
+              }, 200);
+            }
+          });
+        });
+      });
+      
+      // Intersection Observer for animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.animationPlayState = 'running';
+          }
+        });
+      }, observerOptions);
+
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+          el.style.animationPlayState = 'paused';
+          observer.observe(el);
+        });
+      });
+    </script>
+  </body>
 </html>

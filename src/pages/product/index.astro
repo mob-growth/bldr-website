@@ -1,0 +1,900 @@
+---
+const title = "Product — BLDRpage";
+const description = "Build, personalize, and publish high‑converting landing pages with AI. See how BLDRpage works and what you can achieve.";
+const url = "https://bldrpage.com/product";
+---
+
+<html lang="en" class="scroll-smooth antialiased">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={url} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --forest: #066050;
+        --olive: #8F7C25;
+        --blue: #1C86BC;
+        --orange: #DF7616;
+        --white: #FFFFFF;
+        --light-bg: #f8fafc;
+        --text-primary: #0f172a;
+        --text-secondary: #475569;
+        --text-muted: #64748b;
+        --border: #e2e8f0;
+        --radius: 12px;
+        --maxw: 1120px;
+      }
+      
+      * { box-sizing: border-box; }
+      
+      body { 
+        font-family: 'Inter', sans-serif; 
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, var(--light-bg) 0%, var(--white) 100%);
+        color: var(--text-primary);
+      }
+      
+      a { color: inherit; text-decoration: none; }
+      
+      .fade-in { 
+        opacity: 0; 
+        transform: translateY(20px); 
+        animation: fadeInUp 0.6s ease-out forwards; 
+      }
+      .fade-in-delay-1 { animation-delay: 0.1s; }
+      .fade-in-delay-2 { animation-delay: 0.2s; }
+      .fade-in-delay-3 { animation-delay: 0.3s; }
+      
+      @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+      
+      .container { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+      
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 24px;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 14px;
+        border: 2px solid transparent;
+        transition: all 0.2s;
+        cursor: pointer;
+      }
+      
+      .btn-primary {
+        background: linear-gradient(135deg, var(--forest) 0%, var(--blue) 100%);
+        color: var(--white);
+        box-shadow: 0 4px 12px rgba(6, 96, 80, 0.3);
+      }
+      .btn-primary:hover {
+        box-shadow: 0 8px 24px rgba(6, 96, 80, 0.4);
+        transform: translateY(-2px);
+      }
+      
+      .btn-ghost {
+        background: var(--white);
+        border-color: var(--border);
+        color: var(--text-secondary);
+      }
+      .btn-ghost:hover {
+        background: var(--light-bg);
+        border-color: var(--forest);
+      }
+      
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 600;
+        font-size: 20px;
+        color: var(--text-primary);
+        transition: transform 0.2s ease;
+      }
+      
+      .logo:hover {
+        transform: scale(1.05);
+      }
+      
+      .logo img {
+        height: 32px;
+        width: auto;
+        max-width: 160px;
+      }
+      
+      .logo-icon {
+        width: 32px;
+        height: 32px;
+        background: linear-gradient(135deg, var(--forest) 0%, var(--blue) 100%);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 800;
+        font-size: 16px;
+      }
+      
+      header {
+        position: sticky;
+        top: 0;
+        backdrop-filter: saturate(120%) blur(8px);
+        background: rgba(255, 255, 255, 0.8);
+        border-bottom: 1px solid var(--border);
+        z-index: 50;
+      }
+      
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 0;
+      }
+      
+      .nav a {
+        color: var(--text-secondary);
+        transition: color 0.2s;
+      }
+      .nav a:hover {
+        color: var(--forest);
+      }
+      
+      /* Override nav link color for primary buttons */
+      .nav .btn-primary {
+        color: var(--white) !important;
+      }
+      .nav .btn-primary:hover {
+        color: var(--white) !important;
+      }
+      
+      .nav-links {
+        display: flex;
+        gap: 32px;
+        align-items: center;
+      }
+      
+      .nav-item {
+        position: relative;
+      }
+      
+      .nav-item > a {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        color: var(--text-secondary);
+        transition: color 0.2s;
+      }
+      
+      .nav-item:hover > a {
+        color: var(--forest);
+      }
+      
+      .dropdown {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        padding: 16px 0;
+        min-width: 200px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8px);
+        transition: all 0.2s ease;
+        z-index: 100;
+      }
+      
+      .nav-item:hover .dropdown {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+      
+      .dropdown a {
+        display: block;
+        padding: 12px 20px;
+        color: var(--text-secondary);
+        transition: all 0.2s;
+        border-left: 3px solid transparent;
+      }
+      
+      .dropdown a:hover {
+        color: var(--forest);
+        background: var(--light-bg);
+        border-left-color: var(--forest);
+      }
+      
+      .dropdown-arrow {
+        font-size: 12px;
+        transition: transform 0.2s;
+      }
+      
+      .nav-item:hover .dropdown-arrow {
+        transform: rotate(180deg);
+      }
+
+      .nav-item.clicked .dropdown,
+      .nav-item.active.clicked .dropdown {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        transform: translateY(-8px) !important;
+        pointer-events: none !important;
+      }
+      
+      .mobile-menu-toggle {
+        display: none;
+        flex-direction: column;
+        gap: 4px;
+        cursor: pointer;
+        padding: 8px;
+      }
+      
+      .mobile-menu-toggle span {
+        width: 24px;
+        height: 3px;
+        background: var(--text-primary);
+        border-radius: 2px;
+        transition: all 0.3s;
+      }
+      
+      .mobile-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        border-bottom: 1px solid var(--border);
+        padding: 24px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+      
+      .mobile-menu.active {
+        display: block;
+      }
+      
+      .mobile-menu a {
+        display: block;
+        padding: 12px 0;
+        color: var(--text-secondary);
+        border-bottom: 1px solid var(--border);
+        transition: color 0.2s;
+      }
+      
+      .mobile-menu a:last-child {
+        border-bottom: none;
+      }
+      
+      .mobile-menu a:hover {
+        color: var(--forest);
+      }
+      
+      .mobile-menu .btn {
+        margin-top: 16px;
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .mobile-dropdown {
+        position: relative;
+      }
+      
+      .mobile-dropdown-toggle {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+      }
+      
+      .mobile-dropdown-content {
+        display: none;
+        background: var(--light-bg);
+        border-radius: 8px;
+        margin: 8px 0;
+        padding: 8px 0;
+      }
+      
+      .mobile-dropdown-content.active {
+        display: block;
+      }
+      
+      .mobile-dropdown-content a {
+        padding: 8px 16px;
+        margin: 4px 0;
+        font-size: 14px;
+        color: var(--text-muted);
+        border: none;
+      }
+      
+      .mobile-dropdown-content a:hover {
+        background: var(--white);
+        color: var(--forest);
+      }
+      
+      .hero {
+        padding: 120px 0 80px;
+        text-align: center;
+      }
+      
+      .hero h1 {
+        font-size: clamp(40px, 5vw, 64px);
+        line-height: 1.1;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin: 0 0 24px;
+      }
+      
+      .hero p {
+        font-size: 20px;
+        color: var(--text-secondary);
+        margin: 0 auto 32px;
+        line-height: 1.6;
+        max-width: 600px;
+      }
+      
+      .gradient-text {
+        background: linear-gradient(135deg, var(--forest) 0%, var(--blue) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      
+      .section {
+        padding: 80px 0;
+      }
+      
+      .panel {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        padding: 48px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+      }
+      
+      h2 {
+        font-size: clamp(28px, 4vw, 48px);
+        margin: 0 0 16px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        text-align: center;
+      }
+      
+      p.lead {
+        color: var(--text-secondary);
+        font-size: 18px;
+        margin: 0 auto 48px;
+        line-height: 1.6;
+        text-align: center;
+        max-width: 600px;
+      }
+      
+      .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 32px;
+      }
+      
+      .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 24px;
+      }
+      
+      .card {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 32px;
+        transition: all 0.2s;
+      }
+      
+      .card:hover {
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        transform: translateY(-4px);
+      }
+      
+      .card h3 {
+        margin: 0 0 16px;
+        font-size: 20px;
+        font-weight: 600;
+      }
+      
+      .card p {
+        margin: 0;
+        color: var(--text-secondary);
+        line-height: 1.6;
+      }
+      
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 32px;
+        margin-top: 48px;
+      }
+      
+      .feature-card {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 40px;
+        text-align: center;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .feature-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+      
+      .feature-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(135deg, var(--forest) 0%, var(--blue) 100%);
+      }
+      
+      .feature-icon {
+        width: 64px;
+        height: 64px;
+        background: linear-gradient(135deg, var(--forest) 0%, var(--blue) 100%);
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 24px;
+        color: white;
+        font-size: 24px;
+      }
+      
+      .feature-card h3 {
+        font-size: 24px;
+        margin-bottom: 16px;
+        font-weight: 700;
+      }
+      
+      .feature-card p {
+        color: var(--text-secondary);
+        margin-bottom: 24px;
+        line-height: 1.6;
+      }
+      
+      .feature-link {
+        color: var(--forest);
+        font-weight: 600;
+        transition: color 0.2s;
+        text-decoration: underline;
+        text-underline-offset: 4px;
+      }
+      
+      .feature-link:hover {
+        color: var(--blue);
+      }
+      
+      .demo-section {
+        background: var(--white);
+        border-radius: 20px;
+        padding: 60px 48px;
+        text-align: center;
+        border: 1px solid var(--border);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+      }
+      
+      .demo-placeholder {
+        width: 100%;
+        height: 400px;
+        background: linear-gradient(135deg, var(--light-bg) 0%, #e2e8f0 100%);
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 32px 0;
+        border: 2px dashed var(--border);
+      }
+      
+      .demo-placeholder-content {
+        text-align: center;
+      }
+      
+      .demo-icon {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, var(--forest) 0%, var(--blue) 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 16px;
+        color: white;
+        font-size: 32px;
+      }
+      
+      footer {
+        padding: 64px 0;
+        background: var(--light-bg);
+        color: var(--text-muted);
+        border-top: 1px solid var(--border);
+      }
+      
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 32px;
+      }
+      
+      .footer-col a {
+        display: block;
+        color: var(--text-muted);
+        padding: 8px 0;
+        transition: color 0.2s;
+      }
+      
+      .footer-col a:hover {
+        color: var(--forest);
+      }
+      
+      @media (max-width: 768px) {
+        .container { padding: 0 20px; max-width: 100%; }
+        .grid-2, .grid-3 { grid-template-columns: 1fr; gap: 24px; }
+        .feature-grid { grid-template-columns: 1fr; gap: 24px; }
+        .nav-links { display: none; }
+        .mobile-menu-toggle { display: flex; }
+        .nav { position: relative; padding: 12px 0; }
+        .hero { padding: 60px 0 40px; }
+        .hero h1 { font-size: clamp(32px, 9vw, 48px); line-height: 1.2; margin-bottom: 20px; }
+        .hero p { font-size: 18px; line-height: 1.5; margin-bottom: 32px; padding: 0 10px; }
+        .section { padding: 50px 0; }
+        .panel, .demo-section { padding: 40px 24px; border-radius: 16px; }
+        .feature-card { padding: 40px 24px; }
+        .card { padding: 32px 24px; }
+        .card h3 { font-size: 22px; margin-bottom: 16px; }
+        .card p { font-size: 16px; line-height: 1.6; }
+        h2 { font-size: clamp(28px, 7vw, 40px); text-align: center; margin-bottom: 20px; padding: 0 10px; }
+        p.lead { font-size: 18px; padding: 0 10px; margin-bottom: 40px; }
+        .logo img { height: 32px; }
+        .footer-grid { grid-template-columns: 1fr; gap: 32px; text-align: center; }
+        .footer-col { margin-bottom: 24px; }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="nav container fade-in">
+        <a href="/" class="logo">
+          <img src="/logo.png" alt="BLDRpage">
+        </a>
+        
+        <div class="nav-links">
+          <div class="nav-item">
+            <a href="/product">
+              Product
+              <span class="dropdown-arrow">▼</span>
+            </a>
+            <div class="dropdown">
+              <a href="/product" class="active">Overview</a>
+              <a href="/product/ai">AI Features</a>
+              <a href="/product/personalization">Personalization</a>
+              <a href="/product/publish-and-track">Publish & Track</a>
+            </div>
+          </div>
+          <a href="/solutions">Solutions</a>
+          <a href="/resources">Resources</a>
+          <a href="/pricing">Pricing</a>
+          <a href="/login">Sign In</a>
+          <a href="/start" class="btn btn-primary">Get Started</a>
+        </div>
+        
+        <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+      
+      <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-dropdown">
+          <a href="/product" class="mobile-dropdown-toggle" onclick="toggleMobileDropdown(event)">Product ▼</a>
+          <div class="mobile-dropdown-content active">
+            <a href="/product" class="active">Overview</a>
+            <a href="/product/ai">AI Features</a>
+            <a href="/product/personalization">Personalization</a>
+            <a href="/product/publish-and-track">Publish & Track</a>
+          </div>
+        </div>
+        <a href="/solutions">Solutions</a>
+        <a href="/resources">Resources</a>
+        <a href="/pricing">Pricing</a>
+        <a href="/login">Sign In</a>
+        <a href="/start" class="btn btn-primary">Get Started</a>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section class="hero container">
+        <h1 class="fade-in">The <span class="gradient-text">complete platform</span> for AI-powered landing pages</h1>
+        <p class="fade-in-delay-1">Everything you need to build, personalize, and publish high-converting landing pages at scale. No code required.</p>
+        <div class="fade-in-delay-2" style="margin-top: 32px;">
+          <a href="/start" class="btn btn-primary" style="margin-right: 16px;">Start free</a>
+          <a href="#demo" class="btn btn-ghost">Watch demo</a>
+        </div>
+      </section>
+
+      <!-- Core Features -->
+      <section class="section container">
+        <h2 class="fade-in">Three powerful features, one seamless workflow</h2>
+        <p class="lead fade-in-delay-1">From AI generation to personalization to publishing — everything you need is built-in.</p>
+        
+        <div class="feature-grid fade-in-delay-2">
+          <div class="feature-card">
+            <div class="feature-icon">🤖</div>
+            <h3>AI Generation</h3>
+            <p>Describe your page and watch AI generate complete, multi-section landing pages in seconds. No more starting from scratch.</p>
+            <a href="/product/ai" class="feature-link">Learn about AI features →</a>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">🎯</div>
+            <h3>Smart Personalization</h3>
+            <p>Use simple tokens to customize headlines, images, and CTAs for every visitor. Scale personalization without the complexity.</p>
+            <a href="/product/personalization" class="feature-link">Explore personalization →</a>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">🚀</div>
+            <h3>Publish & Track</h3>
+            <p>Ship to your domains, schedule releases, and track performance with built-in analytics. Complete visibility into what works.</p>
+            <a href="/product/publish-and-track" class="feature-link">See publishing tools →</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Demo Section -->
+      <section class="section container" id="demo">
+        <div class="demo-section fade-in">
+          <h2>See BLDRpage in action</h2>
+          <p class="lead">Watch how easy it is to go from idea to published landing page in minutes.</p>
+          
+          <div class="demo-placeholder">
+            <div class="demo-placeholder-content">
+              <div class="demo-icon">▶</div>
+              <h3 style="margin: 0 0 8px; font-size: 20px; color: var(--text-primary);">Interactive Demo</h3>
+              <p style="margin: 0; color: var(--text-secondary);">Coming soon — watch the magic happen</p>
+            </div>
+          </div>
+          
+          <div style="margin-top: 32px;">
+            <a href="/start" class="btn btn-primary" style="margin-right: 16px;">Try it yourself</a>
+            <a href="/examples" class="btn btn-ghost">See examples</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- How it works -->
+      <section class="section container">
+        <h2 class="fade-in">How it works</h2>
+        <p class="lead fade-in-delay-1">A simple three-step process that scales with your needs.</p>
+        
+        <div class="grid-3 fade-in-delay-2">
+          <div class="card">
+            <h3>1. Describe & Generate</h3>
+            <p>Tell our AI what you need: audience, offer, and goal. Get a complete landing page draft with multiple sections, compelling copy, and proper structure.</p>
+          </div>
+          
+          <div class="card">
+            <h3>2. Customize & Personalize</h3>
+            <p>Use our visual editor to refine the design. Add personalization tokens to create variants for different audiences, locations, or campaigns.</p>
+          </div>
+          
+          <div class="card">
+            <h3>3. Publish & Optimize</h3>
+            <p>Deploy to your custom domains, schedule releases, and track performance. Use built-in analytics to optimize and iterate quickly.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Benefits -->
+      <section class="section container">
+        <div class="panel fade-in">
+          <h2>Built for modern marketing teams</h2>
+          <p class="lead">Everything you need to create, test, and optimize landing pages at scale.</p>
+          
+          <div class="grid-2" style="margin-top: 32px;">
+            <div>
+              <h3 style="margin-bottom: 24px; font-size: 24px; font-weight: 600;">For marketers</h3>
+              <div class="card" style="margin-bottom: 16px;">
+                <h4 style="margin-bottom: 8px; font-size: 16px; font-weight: 600;">No more bottlenecks</h4>
+                <p style="margin: 0; font-size: 14px;">Create professional pages without waiting for designers or developers.</p>
+              </div>
+              <div class="card" style="margin-bottom: 16px;">
+                <h4 style="margin-bottom: 8px; font-size: 16px; font-weight: 600;">Test faster</h4>
+                <p style="margin: 0; font-size: 14px;">Spin up variants in minutes, not weeks. A/B test everything.</p>
+              </div>
+              <div class="card">
+                <h4 style="margin-bottom: 8px; font-size: 16px; font-weight: 600;">Scale personalization</h4>
+                <p style="margin: 0; font-size: 14px;">Create hundreds of targeted pages from a single template.</p>
+              </div>
+            </div>
+            
+            <div>
+              <h3 style="margin-bottom: 24px; font-size: 24px; font-weight: 600;">For agencies</h3>
+              <div class="card" style="margin-bottom: 16px;">
+                <h4 style="margin-bottom: 8px; font-size: 16px; font-weight: 600;">Deliver faster</h4>
+                <p style="margin: 0; font-size: 14px;">Ship high-quality pages to clients in record time.</p>
+              </div>
+              <div class="card" style="margin-bottom: 16px;">
+                <h4 style="margin-bottom: 8px; font-size: 16px; font-weight: 600;">Brand consistency</h4>
+                <p style="margin: 0; font-size: 14px;">Built-in brand guardrails ensure every page meets standards.</p>
+              </div>
+              <div class="card">
+                <h4 style="margin-bottom: 8px; font-size: 16px; font-weight: 600;">Client collaboration</h4>
+                <p style="margin: 0; font-size: 14px;">Simple approval workflows and commenting systems.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="section container">
+        <div class="demo-section fade-in-delay-3">
+          <h2>Ready to transform your landing page process?</h2>
+          <p class="lead">Join thousands of teams already using BLDRpage to build better pages faster.</p>
+          <div style="margin-top: 32px;">
+            <a href="/start" class="btn btn-primary" style="margin-right: 16px;">Start free</a>
+            <a href="/pricing" class="btn btn-ghost">View pricing</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-grid">
+        <div class="footer-col">
+          <div class="logo">
+            <img src="/logo.png" alt="BLDRpage">
+          </div>
+          <p style="margin: 16px 0 0; color: var(--text-muted);">AI‑powered landing pages at scale for modern marketing teams.</p>
+        </div>
+        <div class="footer-col">
+          <strong style="display: block; margin-bottom: 16px; font-weight: 600; color: var(--text-primary);">Product</strong>
+          <a href="/product">Overview</a>
+          <a href="/product/ai">AI Features</a>
+          <a href="/product/personalization">Personalization</a>
+          <a href="/product/publish-and-track">Analytics</a>
+        </div>
+        <div class="footer-col">
+          <strong style="display: block; margin-bottom: 16px; font-weight: 600; color: var(--text-primary);">Company</strong>
+          <a href="/about">About</a>
+          <a href="/contact">Contact</a>
+          <a href="/pricing">Pricing</a>
+          <a href="/careers">Careers</a>
+        </div>
+        <div class="footer-col">
+          <strong style="display: block; margin-bottom: 16px; font-weight: 600; color: var(--text-primary);">Resources</strong>
+          <a href="/blog">Blog</a>
+          <a href="/guides">Guides</a>
+          <a href="/templates">Templates</a>
+          <a href="/privacy">Privacy</a>
+          <a href="/terms">Terms</a>
+        </div>
+      </div>
+      <div class="container" style="text-align: center; margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--border);">
+        <p style="margin: 0; font-size: 14px; color: var(--text-muted);">
+          © 2025 BLDRpage. All rights reserved.
+        </p>
+      </div>
+    </footer>
+    
+    <script>
+      function toggleMobileMenu() {
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (mobileMenu) {
+          mobileMenu.classList.toggle('active');
+        }
+      }
+      
+      // Make function globally available
+      window.toggleMobileMenu = toggleMobileMenu;
+      
+      function toggleMobileDropdown(event) {
+        event.preventDefault();
+        const dropdownContent = event.target.nextElementSibling;
+        dropdownContent.classList.toggle('active');
+        
+        const arrow = event.target.innerHTML.includes('▼') ? '▲' : '▼';
+        event.target.innerHTML = event.target.innerHTML.replace(/[▼▲]/, arrow);
+      }
+      
+      document.addEventListener('click', function(event) {
+        const mobileMenu = document.getElementById('mobileMenu');
+        const toggle = document.querySelector('.mobile-menu-toggle');
+        
+        if (!toggle.contains(event.target) && !mobileMenu.contains(event.target)) {
+          mobileMenu.classList.remove('active');
+        }
+      });
+      
+      // Close mobile menu and dropdowns when clicking any navigation link
+      document.addEventListener('DOMContentLoaded', function() {
+        const navLinks = document.querySelectorAll('.mobile-menu a:not(.mobile-dropdown-toggle)');
+        navLinks.forEach(link => {
+          link.addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.remove('active');
+            
+            // Close any open dropdowns
+            const dropdowns = document.querySelectorAll('.mobile-dropdown-content');
+            dropdowns.forEach(dropdown => {
+              dropdown.classList.remove('active');
+            });
+            
+            // Reset dropdown arrows
+            const toggles = document.querySelectorAll('.mobile-dropdown-toggle');
+            toggles.forEach(toggle => {
+              toggle.innerHTML = toggle.innerHTML.replace(/[▼▲]/, '▼');
+            });
+          });
+        });
+        
+        // Fix desktop dropdown closing when clicking dropdown links
+        const desktopDropdownLinks = document.querySelectorAll('.dropdown a');
+        desktopDropdownLinks.forEach(link => {
+          link.addEventListener('click', function() {
+            const navItem = this.closest('.nav-item');
+            if (navItem) {
+              // Remove active class and add clicked class to force dropdown closed
+              const wasActive = navItem.classList.contains('active');
+              navItem.classList.remove('active');
+              navItem.classList.add('clicked');
+              
+              // Clean up after navigation
+              setTimeout(() => {
+                navItem.classList.remove('clicked');
+                if (wasActive) {
+                  navItem.classList.add('active');
+                }
+              }, 200);
+            }
+          });
+        });
+      });
+      
+      document.addEventListener('DOMContentLoaded', () => {
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.style.animationPlayState = 'running';
+            }
+          });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in, .fade-in-delay-1, .fade-in-delay-2, .fade-in-delay-3').forEach(el => {
+          el.style.animationPlayState = 'paused';
+          observer.observe(el);
+        });
+      });
+    </script>
+  </body>
+</html>
