@@ -611,6 +611,58 @@ const url = "https://bldrpage.com";
         flex-wrap: wrap;
       }
       
+      /* Social Proof Section */
+      .social-proof {
+        padding: 80px 0;
+        background: linear-gradient(135deg, rgba(6, 96, 80, 0.02) 0%, rgba(28, 134, 188, 0.02) 100%);
+        border-top: 1px solid rgba(6, 96, 80, 0.1);
+        border-bottom: 1px solid rgba(6, 96, 80, 0.1);
+      }
+      
+      .social-proof-text {
+        text-align: center;
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--text-secondary);
+        margin: 0 0 40px 0;
+        letter-spacing: 0.02em;
+      }
+      
+      .logos-marquee {
+        overflow: hidden;
+        mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+        -webkit-mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+      }
+      
+      .logos-track {
+        display: flex;
+        animation: scroll 30s linear infinite;
+        gap: 64px;
+        align-items: center;
+      }
+      
+      .logo-item {
+        flex-shrink: 0;
+        font-size: 24px;
+        font-weight: 600;
+        color: var(--text-muted);
+        opacity: 0.7;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+        padding: 0 8px;
+      }
+      
+      .logo-item:hover {
+        color: var(--forest);
+        opacity: 1;
+        transform: scale(1.05);
+      }
+      
+      @keyframes scroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+      }
+      
       footer {
         padding: 64px 0;
         background: var(--light-bg);
@@ -724,14 +776,23 @@ const url = "https://bldrpage.com";
           padding: 20px;
         }
         
-        .proofbar {
-          padding: 32px 20px;
-          text-align: center;
+        .social-proof {
+          padding: 60px 0;
         }
         
-        .proofbar span {
-          display: block;
-          margin: 8px 0;
+        .social-proof-text {
+          font-size: 15px;
+          margin-bottom: 32px;
+        }
+        
+        .logos-track {
+          gap: 40px;
+          animation: scroll 25s linear infinite;
+        }
+        
+        .logo-item {
+          font-size: 20px;
+          padding: 0 4px;
         }
         
         .pricing-cta {
@@ -976,14 +1037,27 @@ const url = "https://bldrpage.com";
         </div>
       </section>
 
-      <section class="proof container">
-        <div class="proofbar panel">
-          <span>Trusted by 50K+ teams</span>
-          <span class="logo">Shopify</span>
-          <span class="logo">HubSpot</span>
-          <span class="logo">Salesforce</span>
-          <span class="logo">Stripe</span>
-          <span class="logo">Binance</span>
+      <!-- Social Proof -->
+      <section class="social-proof">
+        <div class="container">
+          <p class="social-proof-text fade-in">Trusted by 50,000+ marketing and sales teams</p>
+          <div class="logos-marquee fade-in-delay-1">
+            <div class="logos-track">
+              <div class="logo-item">Shopify</div>
+              <div class="logo-item">HubSpot</div>
+              <div class="logo-item">Salesforce</div>
+              <div class="logo-item">Stripe</div>
+              <div class="logo-item">Binance</div>
+              <div class="logo-item">Airbnb</div>
+              <div class="logo-item">Netflix</div>
+              <div class="logo-item">Uber</div>
+              <!-- Duplicates for seamless loop -->
+              <div class="logo-item">Shopify</div>
+              <div class="logo-item">HubSpot</div>
+              <div class="logo-item">Salesforce</div>
+              <div class="logo-item">Stripe</div>
+            </div>
+          </div>
         </div>
       </section>
 
